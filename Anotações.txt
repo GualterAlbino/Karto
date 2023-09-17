@@ -1,0 +1,88 @@
+# Dependências instaladas
+
+- npm i -g @nestjs/cli
+//CLI do nestjs
+
+
+- npm install class-validator 
+//Validação de dados
+
+- npm install class-transformer
+//Transforma os dados
+
+- npm install @types/uuid
+//Tipagem do uuid
+
+- npm install @nestjs/typeorm typeorm
+//ORM
+
+- npm install @nestjs/config
+//Configuração de variáveis de ambiente
+
+- npm install pg
+//Instalando o postgress
+
+- npm install typeorm -g
+//Instalando a CLI do TypeORM
+
+- npm install dotenv
+//Instalando o dotenv
+
+
+
+---------------------------
+# Docker
+
+- docker-compose up -d
+//Inicia o docker de acordo com as configurações do arquivo yaml
+
+- docker-compose down
+//Encerra os containers docker e remove TUDO
+
+-------------------------
+
+# TypeORM
+# Script para facilitar: 
+
+````````````
+"typeorm": "typeorm-ts-node-esm --dataSource src/database/data-source-cli.ts"
+````````````
+
+- npm run typeorm migration:show
+//Mostra as migrations
+
+- npm run typeorm migration:generate src/db/migrations/ "nome da migration"
+//Cria uma nova versão da migration
+
+- npm run typeorm migration:run
+//Executa as migrations
+
+- npm run typeorm migration:revert
+//Reverte as migrations
+
+-------------------------
+# NestJS 
+
+- nest g resource "nome da entidade" 
+//Gerador de CRUD (Controller, Service, Module,Teste)
+
+- nest g resource "nome da entidade" --no-spec
+//Gerador de CRUD sem teste(Controller, Service, Module)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Comandos 
+- nest new Karto
+//Cria um novo projeto nestjs
