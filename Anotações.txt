@@ -45,7 +45,7 @@
 # Script para facilitar: 
 
 ````````````
-"typeorm": "typeorm-ts-node-esm --dataSource src/db/data-source-cli.ts"
+"typeorm": "typeorm-ts-node-esm --dataSource src/database/data-source-cli.ts"
 ````````````
 
 - npm run typeorm migration:show

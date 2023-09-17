@@ -1,35 +1,63 @@
-    version: '3.5'
-    
-    services:
-      postgres:
-        image: postgres:latest
-        environment:
-          POSTGRES_USER: ${DB_USERNAME}
-          POSTGRES_PASSWORD: ${DB_PASSWORD}
-          PGDATA: /data/postgres
-        volumes:
-          - postgres:/data/postgres
-        ports:
-          - "5432:5432"
-        networks:
-          - postgres
-        restart: unless-stopped
-    
-      pgadmin:
-        image: dpage/pgadmin4
-        environment:
-          PGADMIN_DEFAULT_EMAIL: ${DB_ADMIN_EMAIL}
-          PGADMIN_DEFAULT_PASSWORD: ${DB_PASSWORD}
-        ports:
-          - "8081:80"
-        depends_on:
-          - postgres
-        networks:
-          - postgres
-    
-    networks:
-      postgres:
-        driver: bridge
-    
+#Arquivos (.yml) trabalham com tabulação, e não como chaves (Como acontece nos .json)
+
+#Versão do Docker
+version: '3.5'
+
+
+#Discrimina cada um dos conatiners
+services:
+
+  #Nesse caso, defini um com nome de "postgres" (Vai ser para o banco de dados)
+  postgres:
+
+    #Define qual "imagem" da tecnologia e depois do ":" a versão que eu quero (latest obviamente a ultima) 
+    image: postgres:latest
+
+    #Configuração do banco de dados (Deve-se configurar conforme o arquivo "data-source-cli.ts")
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      PGDATA: /data/postgres
+
+    #Define a pasta onde os dados do BD serão persistidos
     volumes:
-        postgres:
+      - postgres:/data/postgres
+
+    #A primeira porta (antes do :) define qual porta vou utilizar e a segunda (depois do :) define em
+    #qual porta ficará exposta aos outros containers para ser utilizada
+    ports:
+      - "5432:5432"
+    networks:
+      - postgres
+    restart: unless-stopped
+
+
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${DB_ADMIN_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${DB_PASSWORD}
+
+    #A primeira porta (antes do :) define qual porta vou utilizar e a segunda (depois do :) define em
+    #qual porta ficará exposta aos outros containers para ser utilizada
+    ports:
+      - "8081:80"
+
+    #Informa que o container "pgadmin" depende do container "postgres"
+    depends_on:
+      - postgres
+    networks:
+      - postgres
+
+networks:
+  postgres:
+    driver: bridge
+
+volumes:
+    postgres:
+
+
+
+#Obs: Ao criar um container de banco de dados e não definir o VOLUME, os dados são persistidos enquanto 
+#o container estiver no "ar", porém, se eu derrubar TODOS os dados são perdidos
