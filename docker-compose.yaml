@@ -15,6 +15,7 @@ services:
 
     #Configuração do banco de dados (Deve-se configurar conforme o arquivo "data-source-cli.ts")
     environment:
+      POSTGRES_DB: ${DB_NAME}
       POSTGRES_USER: ${DB_USERNAME}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       PGDATA: /data/postgres

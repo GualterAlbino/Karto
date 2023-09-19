@@ -39,6 +39,8 @@
 - docker-compose down
 //Encerra os containers docker e remove TUDO
 
+Criar o banco de dados
+- acessar: http://localhost:8081/browser/
 -------------------------
 
 # TypeORM
