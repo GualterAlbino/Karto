@@ -11,9 +11,9 @@ const dataSourceOptions: DataSourceOptions = {
 	database: process.env.DB_NAME,
 
 	entities: [__dirname + '\\..\\**\\*.entity{.js,.ts}'], //Identifica esse pdrão de arquivo e importa automaticamente
-	migrations: [__dirname + '//migrations/*.{js,ts}'],
+	migrations: [__dirname + '//migrations//*.{js,ts}'],
 
-	//synchronize: true, - Não deve ser utilizado - Substituir por Migrations
+	synchronize: true//, - Não deve ser utilizado - Substituir por Migrations
 };
 
 const dataSource = new DataSource(dataSourceOptions);
