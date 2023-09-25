@@ -5,6 +5,7 @@ import { PostgresConfig } from './config/postgres.config';
 import { APP_FILTER } from '@nestjs/core';
 import { FiltroDeExcecaoHttp } from './middlewares/FiltroDeExcecaoHttp';
 import { UsuarioModule } from './modules/usuario/usuario.module';
+import { CategoriasModule } from './modules/categorias/categorias.module';
 
 @Module({
 	imports: [
@@ -17,6 +18,7 @@ import { UsuarioModule } from './modules/usuario/usuario.module';
 			inject: [PostgresConfig], ////Injeta a classe de config
 		}),
 		UsuarioModule,
+		CategoriasModule,
 	],
 	providers: [{ provide: APP_FILTER, useClass: FiltroDeExcecaoHttp }],
 })
