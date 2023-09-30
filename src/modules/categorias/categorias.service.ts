@@ -12,7 +12,7 @@ import { v4 as uuid } from 'uuid';
 @Injectable()
 export class CategoriasService {
 	constructor(
-		@InjectRepository (CategoriasService)
+		@InjectRepository (CategoriaEntity)
 		private readonly categoriasRepository: Repository<CategoriaEntity>,
 	) {}
 	
