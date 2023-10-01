@@ -39,8 +39,11 @@
 - docker-compose down
 //Encerra os containers docker e remove TUDO
 
-Criar o banco de dados
 - acessar: http://localhost:8081/browser/
+Criar o banco de dados
+
+- docker images
+//Mostrar imagens criadas
 -------------------------
 
 # TypeORM
@@ -53,7 +56,7 @@ Criar o banco de dados
 - npm run typeorm migration:show
 //Mostra as migrations
 
-- npm run typeorm migration:generate src/db/migrations/ "nome da migration"
+- npm run typeorm migration:generate src/database/migrations/ "nome da migration"
 //Cria uma nova versão da migration
 
 - npm run typeorm migration:run
@@ -72,6 +75,37 @@ Criar o banco de dados
 //Gerador de CRUD sem teste(Controller, Service, Module)
 
 
+
+-------------------------
+# Anotações sobre o DockerFile (Copie e cole em um DockerFile para melhor visualização)
+
+#Escolhi a imagem do node alpine por ser uma imagem mais leve e que não possui o npm instalado, o que é bom para o ambiente de produção, pois não precisamos do npm para rodar a aplicação, apenas para instalar as dependências.
+FROM node:alpine AS build 
+
+#Copia o package.json e o package-lock.json para o diretório /app
+#Copia um determinado arquivo para um determinado caminho DENTRO do container
+COPY Anotações.txt /app/Anotações.txt
+
+#Assim como o ADD, o COPY também copia arquivos para dentro do container, porém, o COPY não descompacta arquivos .tar.gz nem aceita LINKS, e Dowloads de arquivos remotos
+ADD Anotações.txt /app/Anotações.txt
+
+#Executa o comando dentro do container
+RUN mkdir /app
+
+#Executa comandos apenas DEPOIS que o container for criado e incializado
+CMD ["echo", "Hello World!", "/app"]
+
+#Tambem executa comandos apenas DEPOIS que o container for criado e incializado, porém, o ENTRYPOINT não permite que o comando seja sobrescrito e permite utilizar CMD como argumento/parâmetro
+ENTRYPOINT [ "executable" ]
+
+#Define o diretório de trabalho para o caminho especificado(Define a raiz do container)
+WORKDIR /the/workdir/path
+
+#Faz a criação das variáveis de ambiente
+ENV DB_HOST=.env
+
+#Expõe a porta do container quando o container for executado
+EXPOSE 8080
 
 
 
