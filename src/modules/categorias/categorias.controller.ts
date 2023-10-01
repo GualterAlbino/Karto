@@ -33,7 +33,7 @@ export class CategoriasController {
 		return categorias;
 	}
 
-	@Get('/:id')
+	@Get('/:nome')
 	async buscaCategoriaPorNome(@Param('nome') nome: string){
 		const categoriaProcurada = await this.categoriasService.buscaCategoriaPorNome(nome);
 

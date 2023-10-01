@@ -6,6 +6,7 @@ import { APP_FILTER } from '@nestjs/core';
 import { FiltroDeExcecaoHttp } from './middlewares/FiltroDeExcecaoHttp';
 import { UsuarioModule } from './modules/usuario/usuario.module';
 import { CategoriasModule } from './modules/categorias/categorias.module';
+import { EstadoModule } from './modules/estado/estado.module';
 
 @Module({
 	imports: [
@@ -19,6 +20,7 @@ import { CategoriasModule } from './modules/categorias/categorias.module';
 		}),
 		UsuarioModule,
 		CategoriasModule,
+		EstadoModule,
 	],
 	providers: [{ provide: APP_FILTER, useClass: FiltroDeExcecaoHttp }],
 })
