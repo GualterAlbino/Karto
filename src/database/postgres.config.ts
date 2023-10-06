@@ -4,7 +4,6 @@ import { ConfigService } from '@nestjs/config';
 import { TypeOrmOptionsFactory } from '@nestjs/typeorm';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm/dist';
 import 'dotenv/config';
-import path from 'path';
 
 @Injectable()
 export class PostgresConfig implements TypeOrmOptionsFactory {

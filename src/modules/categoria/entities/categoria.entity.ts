@@ -8,22 +8,17 @@ import {
 	UpdateDateColumn,
 } from 'typeorm';
 
-@Entity({ name: 'usuario' }) 
-export class UsuarioEntity {
+@Entity({ name: 'categoria' })
+export class CategoriaEntity {
 	@PrimaryGeneratedColumn('uuid')
 	id: string;
 
-	@Column({ name: 'nome', length: 255, nullable: false })
-	nome: string;
+	@Unique(['descricao'])
+	@Column({ name: 'descricao', length: 255, nullable: false })
+	descricao: string;
 
-	@Unique(['email'])
-	@Column({ name: 'email', length: 255, nullable: false })
-	email: string;
-
-	@Column({ name: 'senha', length: 10, nullable: false })
-	senha: string;
-
-
+	//@Column({ name: 'id_tenant', length: 255, nullable: false })
+	//id_tenant: number;
 
 	@CreateDateColumn({ name: 'criado_em' })
 	criadoEm: string;

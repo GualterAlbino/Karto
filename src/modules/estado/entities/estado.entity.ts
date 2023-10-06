@@ -4,26 +4,19 @@ import {
 	DeleteDateColumn,
 	Entity,
 	PrimaryGeneratedColumn,
-	Unique,
 	UpdateDateColumn,
 } from 'typeorm';
 
-@Entity({ name: 'usuario' }) 
-export class UsuarioEntity {
+@Entity({ name: 'estado' }) 
+export class EstadoEntity {
 	@PrimaryGeneratedColumn('uuid')
 	id: string;
 
-	@Column({ name: 'nome', length: 255, nullable: false })
-	nome: string;
+	@Column({ name: 'descricao', length: 45 })
+	descricao: string;
 
-	@Unique(['email'])
-	@Column({ name: 'email', length: 255, nullable: false })
-	email: string;
-
-	@Column({ name: 'senha', length: 10, nullable: false })
-	senha: string;
-
-
+	@Column({ name: 'uf', length: 2, unique: true })
+	uf: string;
 
 	@CreateDateColumn({ name: 'criado_em' })
 	criadoEm: string;

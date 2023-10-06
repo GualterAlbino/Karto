@@ -5,6 +5,8 @@ import { APP_FILTER } from '@nestjs/core';
 import { PostgresConfig } from './database/postgres.config';
 import { FiltroDeExcecaoHttp } from './middlewares/FiltroDeExcecaoHttp';
 import { UsuarioModule } from './modules/usuario/usuario.module';
+import { CategoriaModule } from './modules/categoria/categoria.module';
+import { EstadoModule } from './modules/estado/estado.module';
 
 @Module({
 	imports: [
@@ -18,6 +20,8 @@ import { UsuarioModule } from './modules/usuario/usuario.module';
 		}),
 
 		UsuarioModule,
+		CategoriaModule,
+		EstadoModule,
 	],
 	providers: [{ provide: APP_FILTER, useClass: FiltroDeExcecaoHttp }],
 })
