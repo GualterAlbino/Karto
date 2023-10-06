@@ -3,10 +3,12 @@ import {
 	Get,
 	Post,
 	Body,
-	Patch,
 	Param,
 	Delete,
 	Put,
+	HttpException,
+	HttpStatus,
+	Patch,
 } from '@nestjs/common';
 import { UsuarioService } from './usuario.service';
 import { CriaUsuarioDTO } from './dto/cria-usuario.dto';
@@ -18,70 +20,94 @@ export class UsuarioController {
 
 	@Post()
 	async criarUsuario(@Body() dadosDoUsuario: CriaUsuarioDTO) {
-		const usuarioCriado =
-			await this.usuarioService.criarUsuario(dadosDoUsuario);
+		try {
+			const usuarioCriado =
+				await this.usuarioService.criarUsuario(dadosDoUsuario);
 
-		return {
-			mensagem: 'Usuario criado com sucesso!',
-			dados: usuarioCriado,
-		};
+			return {
+				mensagem: 'Usuario criado com sucesso!',
+				dados: usuarioCriado,
+			};
+		} catch (error) {
+			throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+		}
 	}
 
 	@Get()
 	async buscaTodosUsuarios() {
-		const usuarios = await this.usuarioService.buscaTodosUsuarios();
+		try {
+			const usuarios = await this.usuarioService.buscaTodosUsuarios();
 
-		return usuarios;
+			return usuarios;
+		} catch (error) {
+			throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+		}
 	}
 
 	@Get('/:id')
 	async buscaUsuarioPorEmail(@Param('email') email: string) {
-		const usuarioProcurado =
-			await this.usuarioService.buscaUsuarioPorEmail(email);
+		try {
+			const usuarioProcurado =
+				await this.usuarioService.buscaUsuarioPorEmail(email);
 
-		if (usuarioProcurado == null) {
-			return {
-				mensagem: 'Usuario não encontrado!',
-			};
+			if (usuarioProcurado == null) {
+				return {
+					mensagem: 'Usuario não encontrado!',
+				};
+			}
+
+			return usuarioProcurado;
+		} catch (error) {
+			throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
 		}
-
-		return usuarioProcurado;
 	}
 
 	@Get('/:id')
 	async buscaUsuarioPorID(@Param('id') id: string) {
-		const usuarioProcurado = await this.usuarioService.buscaUsuarioPorID(id);
+		try {
+			const usuarioProcurado = await this.usuarioService.buscaUsuarioPorID(id);
 
-		if (usuarioProcurado == null) {
-			return {
-				mensagem: 'Usuario não encontrado!',
-			};
+			if (usuarioProcurado == null) {
+				return {
+					mensagem: 'Usuario não encontrado!',
+				};
+			}
+
+			return usuarioProcurado;
+		} catch (error) {
+			throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
 		}
-
-		return usuarioProcurado;
 	}
 
-	@Put('/:id')
+	@Patch('/:id')
 	async atualizarUsuario(
 		@Param('id') id: string,
 		@Body() dadosDoUsuario: AtualizaUsuarioDTO,
 	) {
-		const usuarioAlterado = await this.usuarioService.atualizarUsuario(
-			id,
-			dadosDoUsuario,
-		);
-		return {
-			mensagem: 'Usuario atualizado com sucesso!',
-			dados: usuarioAlterado,
-		};
+		try {
+			const usuarioAlterado = await this.usuarioService.atualizarUsuario(
+				id,
+				dadosDoUsuario,
+			);
+			return {
+				mensagem: 'Usuario atualizado com sucesso!',
+				dados: usuarioAlterado,
+			};
+		} catch (error) {
+			throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+		}
 	}
 
 	@Delete('/:id')
 	async deletarUsuario(@Param('id') id: string) {
-		const usuarioRemovido = await this.usuarioService.deletarUsuario(id);
-		return {
-			mensagem: 'Usuario deletado com sucesso!',
-			dados: usuarioRemovido,
-		};
+		try {
+			const usuarioRemovido = await this.usuarioService.deletarUsuario(id);
+			return {
+				mensagem: 'Usuario deletado com sucesso!',
+				dados: usuarioRemovido,
+			};
+		} catch (error) {
+			throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+		}
 	}
 }

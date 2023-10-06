@@ -4,16 +4,18 @@ import {
 	DeleteDateColumn,
 	Entity,
 	PrimaryGeneratedColumn,
+	Unique,
 	UpdateDateColumn,
 } from 'typeorm';
 
-@Entity({ name: 'categorias' }) //Nome da tabela no banco no plural
+@Entity({ name: 'categoria' })
 export class CategoriaEntity {
 	@PrimaryGeneratedColumn('uuid')
 	id: string;
 
-	@Column({ name: 'nome', length: 255, nullable: false })
-	nome: string;
+	@Unique(['descricao'])
+	@Column({ name: 'descricao', length: 255, nullable: false })
+	descricao: string;
 
 	//@Column({ name: 'id_tenant', length: 255, nullable: false })
 	//id_tenant: number;
@@ -27,6 +29,3 @@ export class CategoriaEntity {
 	@DeleteDateColumn({ name: 'deletado_em' })
 	deletadoEm: string;
 }
-	
-
-

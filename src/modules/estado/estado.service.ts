@@ -1,7 +1,11 @@
-import { ConflictException, Injectable } from '@nestjs/common';
+import {
+	ConflictException,
+	Injectable,
+	NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { EstadoEntity} from './entities/estado.entity';
+import { EstadoEntity } from './entities/estado.entity';
 import { CriaEstadoDto } from './dto/cria-estado.dto';
 import { v4 as uuid } from 'uuid';
 import { ListaEstadoDTO } from './dto/lista-estado.dto';
@@ -9,70 +13,113 @@ import { AtualizaEstadoDto } from './dto/atualiza-estado.dto';
 
 @Injectable()
 export class EstadoService {
-  constructor(
-    @InjectRepository(EstadoEntity)
-    private readonly estadoRepository: Repository<EstadoEntity>,
-  ) {}
-	
-	async criarEstado(dadosEstado:CriaEstadoDto){
-		
-		const estadoExistente = await this.estadoRepository.findOne({
-      where: { uf: dadosEstado.uf },
-    });
+	constructor(
+		@InjectRepository(EstadoEntity)
+		private readonly estadoRepository: Repository<EstadoEntity>,
+	) {}
 
-		if (estadoExistente) {
-      throw new ConflictException(`Já existe um estado com a UF: ${dadosEstado.uf}`);
-    }
+	async criarEstado(dadosEstado: CriaEstadoDto) {
+		try {
+			const estadoExistente = await this.estadoRepository.findOne({
+				where: { uf: dadosEstado.uf },
+			});
 
-		const estadoEntity = new EstadoEntity();
+			if (estadoExistente) {
+				throw new ConflictException(
+					`O estado com a UF: ${dadosEstado.uf} já existe.`,
+				);
+			}
 
-		estadoEntity.id = uuid();
-		estadoEntity.descricao = dadosEstado.descricao;
-		estadoEntity.uf = dadosEstado.uf;
+			const estadoEntity = new EstadoEntity();
 
-		return this.estadoRepository.save(estadoEntity);
+			estadoEntity.id = uuid();
+			estadoEntity.descricao = dadosEstado.descricao;
+			estadoEntity.uf = dadosEstado.uf;
+
+			return this.estadoRepository.save(estadoEntity);
+		} catch (error) {
+			throw new ConflictException(`${error.message}`);
+		}
 	}
 
 	async buscaTodosEstados() {
-		const estadoExistentes = await this.estadoRepository.find();
+		try {
+			const estadoExistentes = await this.estadoRepository.find();
 
-		const estados = estadoExistentes.map(
-			(estado) => new ListaEstadoDTO(estado.id, estado.descricao, estado.uf),
-		);
+			const estados = estadoExistentes.map(
+				(estado) => new ListaEstadoDTO(estado.id, estado.descricao, estado.uf),
+			);
 
-		return estados;
+			return estados;
+		} catch (error) {
+			throw new ConflictException(`${error.message}`);
+		}
 	}
 
-	async buscaEstadoPorDesc(descricao: string){
-		const checkDesc = await this.estadoRepository.findOne({
-			where:{ descricao },
-		})
+	async buscaEstadoPorDescricao(descricao: string) {
+		try {
+			const checkDesc = await this.estadoRepository.findOne({
+				where: { descricao },
+			});
 
-		return checkDesc;
+			return checkDesc;
+		} catch (error) {
+			throw new ConflictException(`${error.message}`);
+		}
 	}
 
-	async buscaEstadoPorUF(uf: string){
-		const checkUF = await this.estadoRepository.findOne({
-			where:{ uf },
-		})
+	async buscaEstadoPorUF(uf: string) {
+		try {
+			const checkUF = await this.estadoRepository.findOne({
+				where: { uf },
+			});
 
-		return checkUF;
+			return checkUF;
+		} catch (error) {
+			throw new ConflictException(error.message);
+		}
 	}
 
-	async buscaEstadoPorID(id: string){
-		const checkID = await this.estadoRepository.findOne({
-			where:{ id },
-		})
+	async buscaEstadoPorID(id: string) {
+		try {
+			const checkID = await this.estadoRepository.findOne({
+				where: { id },
+			});
 
-		return checkID;
+			return checkID;
+		} catch (error) {
+			throw new ConflictException(`${error.message}`);
+		}
 	}
 
-	async atualizarEstado(id: string, estadoEntity: AtualizaEstadoDto) {
-		await this.estadoRepository.update(id, estadoEntity);
+	async atualizarEstado(uf: string, estadoEntity: AtualizaEstadoDto) {
+		try {
+			const estadoAtualizado = await this.estadoRepository.update(
+				{ uf: uf },
+				estadoEntity,
+			);
+
+			if (estadoAtualizado.affected === 0) {
+				throw new NotFoundException(
+					`O estado com a UF: " ${uf} " não foi encontrado! Nenhum registro foi afetado.`,
+				);
+			}
+		} catch (error) {
+			throw new ConflictException(error.message);
+		}
 	}
 
-	async deletarEstado(id: string){
-		await this.estadoRepository.delete(id);
+	async deletarEstado(uf: string) {
+		try {
+			const resultadoDelecao = await this.estadoRepository.delete({ uf: uf });
+			if (resultadoDelecao.affected === 0) {
+				// Nenhum registro foi excluído, o estado não foi encontrado
+				throw new NotFoundException(
+					`O estado com a UF: " ${uf} " não foi encontrado! Nenhum registro foi afetado.`,
+				);
+			}
+		} catch (error) {
+			throw new ConflictException(error.message);
+		}
 	}
-
 }

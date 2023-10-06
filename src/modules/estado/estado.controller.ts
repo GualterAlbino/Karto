@@ -6,11 +6,14 @@ import {
 	Patch,
 	Param,
 	Delete,
+	Logger,
+	HttpException,
+	HttpStatus,
 } from '@nestjs/common';
 import { EstadoService } from './estado.service';
 import { CriaEstadoDto } from './dto/cria-estado.dto';
 import { AtualizaEstadoDto } from './dto/atualiza-estado.dto';
-import { ListaEstadoDTO } from './dto/lista-estado.dto';
+import { EstadoEntity } from './entities/estado.entity';
 
 @Controller('/estado')
 export class EstadoController {
@@ -18,79 +21,91 @@ export class EstadoController {
 
 	@Post()
 	async criarEstado(@Body() dadosEstado: CriaEstadoDto) {
-		const estadoCriado =
-			await this.estadoService.criarEstado(dadosEstado);
-		
-		return {
-			mensagem: 'Estado criado com sucesso!',
-			dados: estadoCriado,
-		};
-	}	
+		try {
+			const estadoCriado = await this.estadoService.criarEstado(dadosEstado);
+
+			return {
+				mensagem: 'Estado criado com sucesso!',
+				dados: estadoCriado,
+			};
+		} catch (error) {
+			throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+		}
+	}
 
 	@Get()
 	async buscaTodosEstados() {
-		const estados = await this.estadoService.buscaTodosEstados();
+		try {
+			const estados = await this.estadoService.buscaTodosEstados();
 
-		return estados;
-	}
-
-	@Get('/:descricao')
-	async buscaEstadoPorDesc(@Param('descricao') descricao: string){
-		const estadoProcurado = await this.estadoService.buscaEstadoPorDesc;
-
-		if(estadoProcurado == null) {
-			return {
-				mensagem: 'Estado não encontrado',
-			};
+			return estados;
+		} catch (error) {
+			throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
 		}
 	}
 
-	@Get('/:id')
-	async buscaEstadoPorId(@Param('id') id: string){
-		const estadoProcurado = await this.estadoService.buscaEstadoPorID(id);
+	//Aplicando o metodo chamado "Trasnformaçao de Parametros" podemos passar o tipo de busca que queremos
+	@Get('/:tipo/:valor')
+	async buscar(@Param('tipo') tipo: string, @Param('valor') valor: string) {
+		try {
+			let estadoProcurado: EstadoEntity;
 
-		if(estadoProcurado == null) {
-			return {
-				mensagem: 'Estado não encontrado',
-			};
+			if (tipo === 'id') {
+				estadoProcurado = await this.estadoService.buscaEstadoPorID(valor);
+			} else if (tipo === 'uf') {
+				estadoProcurado = await this.estadoService.buscaEstadoPorUF(valor);
+			} else if (tipo === 'descricao') {
+				estadoProcurado =
+					await this.estadoService.buscaEstadoPorDescricao(valor);
+			} else {
+				return {
+					mensagem:
+						'Tipo de busca inválido! \n Os tipos aceitos são: id, uf, descricao.',
+				};
+			}
+
+			if (!estadoProcurado) {
+				return {
+					mensagem: 'Estado não encontrado!',
+				};
+			} else {
+				return estadoProcurado;
+			}
+		} catch (error) {
+			throw new HttpException(error, HttpStatus.BAD_REQUEST);
 		}
 	}
 
-	@Get('/:uf')
-	async buscaEstadoPorUf(@Param('uf') uf: string){
-		const estadoProcurado = await this.estadoService.buscaEstadoPorUF(uf);
-
-		if(estadoProcurado == null) {
-			return {
-				mensagem: 'Estado não encontrado',
-			};
-		}
-	}
-
-	@Patch('/:id')
+	@Patch('/:uf')
 	async atualizarEstado(
-		@Param('id') id:string, 
+		@Param('uf') uf: string,
 		@Body() dadosEstado: AtualizaEstadoDto,
-	){
-		const estadoAlterado = await this.estadoService.atualizarEstado(
-			id,
-			dadosEstado 
-			);	
-		return {
-			mensagem: 'Estado autalizado com sucesso!',
-			dados: estadoAlterado,
-		};
+	) {
+		try {
+			const estadoAlterado = await this.estadoService.atualizarEstado(
+				uf,
+				dadosEstado,
+			);
+			return {
+				mensagem: 'Estado autalizado com sucesso!',
+				dados: estadoAlterado,
+			};
+		} catch (error) {
+			throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+		}
 	}
 
-	@Delete('/:id')
-	async deletarEstado(@Param('id') id: string)
-	{
-		const estadoRemovido = await this.estadoService.deletarEstado(id);
-		return {
-			mensagem: 'Estado deletado com sucesso!',
-			dados: estadoRemovido,
-		};
+	@Delete('/:uf')
+	async deletarEstado(@Param('uf') uf: string) {
+		try {
+			const estadoRemovido = await this.estadoService.deletarEstado(uf);
+
+			return {
+				mensagem: 'Estado deletado com sucesso!',
+				dados: estadoRemovido,
+			};
+		} catch (error) {
+			throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+		}
 	}
-
-
 }

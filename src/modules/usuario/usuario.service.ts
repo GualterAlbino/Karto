@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { CriaUsuarioDTO } from './dto/cria-usuario.dto';
 import { AtualizaUsuarioDTO } from './dto/atualiza-usuario.dto';
 import { UsuarioEntity } from './entities/usuario.entity';
@@ -15,47 +15,93 @@ export class UsuarioService {
 	) {}
 
 	async criarUsuario(dadosDoUsuario: CriaUsuarioDTO) {
-		const usuarioEntity = new UsuarioEntity();
+		try {
+			const usuarioEntity = new UsuarioEntity();
 
-		usuarioEntity.id = uuid(); //??
-		usuarioEntity.nome = dadosDoUsuario.nome;
-		usuarioEntity.email = dadosDoUsuario.email;
-		usuarioEntity.senha = dadosDoUsuario.senha;
+			usuarioEntity.id = uuid(); //??
+			usuarioEntity.nome = dadosDoUsuario.nome;
+			usuarioEntity.email = dadosDoUsuario.email;
+			usuarioEntity.senha = dadosDoUsuario.senha;
 
-		return this.usuarioRepository.save(usuarioEntity);
+			if (
+				this.usuarioRepository.findOne({
+					where: { email: usuarioEntity.email },
+				})
+			) {
+				throw new ConflictException(
+					`O e-mail ${usuarioEntity.email} já está sendo utilizado.`,
+				);
+			}
+
+			return this.usuarioRepository.save(usuarioEntity);
+		} catch (error) {
+			throw new ConflictException(error.message);
+		}
 	}
 
 	async buscaTodosUsuarios() {
-		const usuariosExistentes = await this.usuarioRepository.find();
+		try {
+			const usuariosExistentes = await this.usuarioRepository.find();
 
-		const usuarios = usuariosExistentes.map(
-			(usuario) => new ListaUsuarioDTO(usuario.id, usuario.nome),
-		);
+			const usuarios = usuariosExistentes.map(
+				(usuario) => new ListaUsuarioDTO(usuario.id, usuario.nome),
+			);
 
-		return usuarios;
+			return usuarios;
+		} catch (error) {
+			throw new ConflictException(error.message);
+		}
 	}
 
 	async buscaUsuarioPorEmail(email: string) {
-		const checkEmail = await this.usuarioRepository.findOne({
-			where: { email },
-		});
+		try {
+			const checkEmail = await this.usuarioRepository.findOne({
+				where: { email: email },
+			});
 
-		return checkEmail;
+			return checkEmail;
+		} catch (error) {
+			throw new ConflictException(error.message);
+		}
 	}
 
 	async buscaUsuarioPorID(id: string) {
-		const checkID = await this.usuarioRepository.findOne({
-			where: { id },
-		});
+		try {
+			const checkID = await this.usuarioRepository.findOne({
+				where: { id },
+			});
 
-		return checkID;
+			return checkID;
+		} catch (error) {
+			throw new ConflictException(error.message);
+		}
 	}
 
 	async atualizarUsuario(id: string, usuarioEntity: AtualizaUsuarioDTO) {
-		await this.usuarioRepository.update(id, usuarioEntity);
+		try {
+			const usuarioAtualizado = await this.usuarioRepository.update(id, usuarioEntity);
+
+			if (usuarioAtualizado.affected === 0) {
+				throw new NotFoundException(
+					`O usuario não foi encontrado e não pôde ser atualizado.`,
+				);
+			}
+		} catch (error) {
+			throw new ConflictException(error.message);
+		}
 	}
 
 	async deletarUsuario(id: string) {
-		await this.usuarioRepository.delete(id);
+		try {
+			const usuarioDeletado = await this.usuarioRepository.delete(id);
+
+			if (usuarioDeletado.affected === 0) {
+				throw new ConflictException(
+					`O usuario com o ID: " ${id} " não foi encontrado! Nenhum registro foi afetado.`,
+				);
+			}
+		} catch (error) {
+			throw new ConflictException(error.message);
+		}
 	}
 }
