@@ -1,21 +1,29 @@
+import { CidadeEntity } from 'src/modules/cidade/entities/cidade.entity';
 import {
 	Column,
 	CreateDateColumn,
 	DeleteDateColumn,
 	Entity,
+	OneToMany,
 	PrimaryGeneratedColumn,
+	Unique,
 	UpdateDateColumn,
 } from 'typeorm';
 
-@Entity({ name: 'estado' }) 
+@Entity({ name: 'estado' })
 export class EstadoEntity {
 	@PrimaryGeneratedColumn('uuid')
 	id: string;
 
-	@Column({ name: 'descricao', length: 45 })
+	@OneToMany(() => CidadeEntity, (cidade) => cidade.estado)
+	cidade: CidadeEntity[];
+
+	@Unique(['descricao'])
+	@Column({ name: 'descricao', length: 45, nullable: false })
 	descricao: string;
 
-	@Column({ name: 'uf', length: 2, unique: true })
+	@Unique(['uf'])
+	@Column({ name: 'uf', length: 2, nullable: false })
 	uf: string;
 
 	@CreateDateColumn({ name: 'criado_em' })
