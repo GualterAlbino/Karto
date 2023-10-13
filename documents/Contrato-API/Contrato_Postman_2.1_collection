@@ -1,0 +1,538 @@
+{
+	"info": {
+		"_postman_id": "264ecc07-9b1c-4c6a-becc-7e186b33456f",
+		"name": "Karto",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24513123",
+		"_collection_link": "https://restless-zodiac-568159.postman.co/workspace/Karto-API~305373a5-9ea6-4e91-9495-0ae0f91f6f70/collection/24513123-264ecc07-9b1c-4c6a-becc-7e186b33456f?action=share&source=collection_link&creator=24513123"
+	},
+	"item": [
+		{
+			"name": "Categoria",
+			"item": [
+				{
+					"name": "Listar Categorias",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/categoria",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"categoria"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Busca por Descrição",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/categoria/Teste",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"categoria",
+								"Teste"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar Categoria",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descricao\": \"Teste\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/categoria",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"categoria"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar Categoria",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descricao\": \"Teste2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/categoria/Teste",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"categoria",
+								"Teste"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Categoria",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/categoria/Teste2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"categoria",
+								"Teste2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Estado",
+			"item": [
+				{
+					"name": "Criar Estado",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \r\n    \"descricao\": \"São Paulo\",\r\n    \"uf\": \"SP\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/estado",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"estado"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Busca Por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/estado/id/774c14d6-9926-41dc-85d7-bf09069a2394",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"estado",
+								"id",
+								"774c14d6-9926-41dc-85d7-bf09069a2394"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Busca por UF",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/estado/uf/SP",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"estado",
+								"uf",
+								"SP"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Busca por Descricao",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/estado/descricao/São Paulo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"estado",
+								"descricao",
+								"São Paulo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar Estado",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descricao\": \"SPSPSPPSPS\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/estado/SP",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"estado",
+								"SP"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Estado",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/estado/SP",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"estado",
+								"SP"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Estados",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/estado",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"estado"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pedido",
+			"item": [
+				{
+					"name": "Cadastrar Pedido",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/pedido?usuarioId=2610c766-51b6-4f45-8e96-524c4fd0e1bb",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"pedido"
+							],
+							"query": [
+								{
+									"key": "usuarioId",
+									"value": "2610c766-51b6-4f45-8e96-524c4fd0e1bb"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pedidos de um usuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/pedido?usuarioId=2610c766-51b6-4f45-8e96-524c4fd0e1bb",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"pedido"
+							],
+							"query": [
+								{
+									"key": "usuarioId",
+									"value": "2610c766-51b6-4f45-8e96-524c4fd0e1bb"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Produto",
+			"item": [
+				{
+					"name": "Listar Produtos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/produto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"produto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar Produto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \r\n    \r\n    \"nome\": \"Figura de ação Marvel Homem Aranha Olympus Homem Aranha E6358 de Hasbro Classic\",\r\n    \"valor\": 70.0,\r\n    \"quantidadeDisponivel\": 10,\r\n    \"descricao\": \"Produto novo, bem acabado, alegria para colecionadores\",\r\n    \"caracteristicas\": [{\r\n        \"nome\": \"Fabricante\",\r\n        \"descricao\": \"Iron Studios\"\r\n    },{\r\n        \"nome\": \"material\",\r\n        \"descricao\": \"Plástico\"\r\n    }],\r\n    \"imagens\": [{\r\n        \"url\": \"https://i.imgur.com/dwDZICq.jpg\",\r\n        \"descricao\": \"Imagem do Homem Aranha\"\r\n    }],\r\n    \"categoria\": \"Colecionáveis\"\r\n \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/produto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"produto"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuario",
+			"item": [
+				{
+					"name": "Criar Usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \r\n\r\n    \"nome\": \"Gualter\",\r\n    \"email\": \"gualter1@gmail.com\",\r\n    \"senha\": \"1234567891\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/usuario",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar Usuario",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \r\n\r\n    \"nome\": \"Gualter Albino222\"\r\n    \r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/usuario/1aa826f1-a084-448a-abc9-a29771932b17",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"usuario",
+								"1aa826f1-a084-448a-abc9-a29771932b17"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1605905e-8ecf-4027-8311-51a2c6969024",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Busca Por Email",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/usuario/gualter1@gmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"usuario",
+								"gualter1@gmail.com"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "gualter1@gmail.com",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Usuarios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/usuario",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Usuario",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/usuario/5c822f0d-073e-49e2-a8fe-422b43128a31",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"usuario",
+								"5c822f0d-073e-49e2-a8fe-422b43128a31"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

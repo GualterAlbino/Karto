@@ -1,4 +1,5 @@
-import { CidadeEntity } from 'src/modules/cidade/entities/cidade.entity';
+import { HistoricoPedidoEntity } from 'src/modules/historico_pedido/entities/historico.pedido.entity';
+import { TenantEntity } from 'src/modules/tenant/entities/tenant.entity';
 import {
 	Column,
 	CreateDateColumn,
@@ -6,25 +7,20 @@ import {
 	Entity,
 	OneToMany,
 	PrimaryGeneratedColumn,
-	Unique,
 	UpdateDateColumn,
 } from 'typeorm';
 
-@Entity({ name: 'estado' })
-export class EstadoEntity {
+@Entity({ name: 'status_pedido' })
+export class StatusPedidoEntity {
 	@PrimaryGeneratedColumn('uuid')
 	id: string;
 
-	@OneToMany(() => CidadeEntity, (cidade) => cidade.estado)
-	cidade: CidadeEntity[];
+	//HistoricoPedido
+	@OneToMany(() => HistoricoPedidoEntity, (historicoPedido) => historicoPedido.statusPedido)
+	historico: HistoricoPedidoEntity;
 
-	@Unique(['descricao'])
 	@Column({ name: 'descricao', length: 45, nullable: false })
 	descricao: string;
-
-	@Unique(['uf'])
-	@Column({ name: 'uf', length: 2, nullable: false })
-	uf: string;
 
 	@CreateDateColumn({ name: 'criado_em' })
 	criadoEm: string;

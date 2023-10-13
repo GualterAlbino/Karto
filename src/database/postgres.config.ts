@@ -11,7 +11,7 @@ export class PostgresConfig implements TypeOrmOptionsFactory {
 	constructor(private config: ConfigService) {}
 
 	createTypeOrmOptions(): TypeOrmModuleOptions {
-		console.log(this.config.get<number>('DB_HOST'));
+		//console.log(this.config.get<number>('DB_HOST'));
 		return {
 			type: 'postgres',
 			host: this.config.get<string>('DB_HOST'),
