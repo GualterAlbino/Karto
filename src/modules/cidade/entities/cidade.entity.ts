@@ -5,7 +5,6 @@ import {
 	Column,
 	CreateDateColumn,
 	DeleteDateColumn,
-	Double,
 	Entity,
 	ManyToOne,
 	OneToMany,
@@ -18,9 +17,7 @@ export class CidadeEntity {
 	@PrimaryGeneratedColumn('uuid')
 	id: string;
 
-	//Tenant
-
-	//Cidade
+	//Estado
 	@ManyToOne(() => EstadoEntity, (estado) => estado.cidade)
 	estado: EstadoEntity;
 

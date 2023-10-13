@@ -1,5 +1,8 @@
 import { CidadeEntity } from 'src/modules/cidade/entities/cidade.entity';
+import { PedidoEntity } from 'src/modules/pedido/entities/pedido.entity';
+import { StatusPedidoEntity } from 'src/modules/status_pedido/entity/status.pedido.entity';
 import { TenantEntity } from 'src/modules/tenant/entities/tenant.entity';
+import { UsuarioEntity } from 'src/modules/usuario/entities/usuario.entity';
 import { UsuarioEnderecoEntity } from 'src/modules/usuario_endereco/entities/usuario.endereco.entity';
 import {
 	Column,
@@ -7,33 +10,21 @@ import {
 	DeleteDateColumn,
 	Entity,
 	ManyToOne,
-	OneToMany,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn,
 } from 'typeorm';
 
-@Entity({ name: 'bairro' })
-export class BairroEntity {
+@Entity({ name: 'historico_pedido' })
+export class HistoricoPedidoEntity {
 	@PrimaryGeneratedColumn('uuid')
 	id: string;
 
-	//Tenant
-	@ManyToOne(() => TenantEntity, (tenant) => tenant.bairro)
-	tenant: TenantEntity;
+	//Pedido
+	@ManyToOne(() => PedidoEntity, (pedido) => pedido.historico)
+	pedido: PedidoEntity[];
 
-	//Cidade
-	@ManyToOne(() => CidadeEntity, (cidade) => cidade.bairro)
-	cidade: CidadeEntity;
-
-	//Bairro
-	@OneToMany(() => UsuarioEnderecoEntity, (usuario) => usuario.bairro)
-	usuario: UsuarioEnderecoEntity[];
-
-	@Column({ name: 'descricao', length: 45, nullable: false })
-	descricao: string;
-
-	@Column({ name: 'valor_frete', nullable: false })
-	valor_frete: Number;
+	@ManyToOne(() => StatusPedidoEntity, (statusPedido) => statusPedido.historico)
+	statusPedido: StatusPedidoEntity[];
 
 	@CreateDateColumn({ name: 'criado_em' })
 	criadoEm: string;

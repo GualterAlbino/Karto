@@ -1,3 +1,4 @@
+import { PedidoEntity } from 'src/modules/pedido/entities/pedido.entity';
 import { UsuarioEnderecoEntity } from 'src/modules/usuario_endereco/entities/usuario.endereco.entity';
 import {
 	Column,
@@ -15,11 +16,16 @@ export class UsuarioEntity {
 	@PrimaryGeneratedColumn('uuid')
 	id: string;
 
+	//Endereços
 	@OneToMany(
 		() => UsuarioEnderecoEntity,
-		(usuario_endereco) => usuario_endereco.usuario,
+		(usuarioEndereco) => usuarioEndereco.usuario,
 	)
-	usuario_endereco: UsuarioEnderecoEntity[];
+	usuarioEndereco: UsuarioEnderecoEntity[];
+
+	//Pedidos
+	@OneToMany(() => PedidoEntity, (pedido) => pedido.usuario)
+	pedido: PedidoEntity[];
 
 	@Column({ name: 'nome', length: 255, nullable: false })
 	nome: string;

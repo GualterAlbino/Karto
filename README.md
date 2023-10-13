@@ -1,73 +1,91 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+<div align="center">
+  
+ ## Karto
+  
+</div>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## 📁 Informações do projeto:
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+- O projeto se trata de uma aplicação `multi-tenancy`, ou seja, a aplicação foi projetada para servir múltiplos clientes, também chamados de "inquilinos" ou "tenants", de forma isolada em um único sistema compartilhado. Cada inquilino em uma aplicação multi-tenancy geralmente opera como se tivesse sua própria instância privada da aplicação, com seus próprios dados, configurações e, em muitos casos, sua própria experiência personalizada.
 
-## Description
+<br>
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- O projeto tem como objetivo servir como expositor de produtos aos estabelecimentos(tenants) com um catalogo de produtos que permite a realização de pedidos pelos usuarios finais (clientes dos estabelecimentos). A aplicação além de suportar diversos estabelecimentos também permite certo nivel de personalização da página de exibição de produtos de cada um.
 
-## Installation
+<br>
 
-```bash
-$ npm install
-```
+- Cada estabelecimento (tenant) pode cadastrar produtos a serem exibidos, bem como editar e excluir. Além disso o cliente final pode realizar os pedidos pela prorpia plataforma informando os itens e a forma de pagamento.
+  *Obs:* A realização das transações de pagamento não ocorrem na plataforma, o objetivo da aplicação é servir como um canal de exposição e pedidos de produtos.
 
-## Running the app
+<hr>
 
-```bash
-# development
-$ npm run start
+## ✔️ Requisitos para utilização do projeto:
+- Possuir o Docker Desktop instalado e devidamente configurado
+- Possuir alguma Application Programming Interfaces, preferencialmente o POSTMAN devido as collections que acompanham os arquivos do projeto
 
-# watch mode
-$ npm run start:dev
+<hr>
 
-# production mode
-$ npm run start:prod
-```
+## ▶️ Utilização do projeto:
 
-## Test
+- Para utilização do projeto deve-se seguir os seguintes passos:
 
-```bash
-# unit tests
-$ npm run test
+1. Após clonar o repositorio e abrir na IDE execute os comandos:
 
-# e2e tests
-$ npm run test:e2e
+2.  `docker-compose up -d` para subir o container e iniciar os serviços. O container foi divido em três serviços,sendo eles:
+- Aplicação
+- Banco de Dados
+- pgAdmin (SBD)
 
-# test coverage
-$ npm run test:cov
-```
+3. Feito isso, será necessario que acesse o pgAdmin (SBD escolhido) no proprio navegador pelo link: `http://localhost:8081/browser/`
 
-## Support
+6. Ao acessar, deverá informar as credenciais de acesso ao painel administrativo:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+7. email: `gualter@email.com` senha: `postgres`
+*Obs:* Essa e outras informações de conexão estão disponiveis no arquivo *.env* que está público propositalmente.
 
-## Stay in touch
+8. Ao acessar, deve clicar em ADICIONAR NOVO SERVIDOR. A seguir os passos:
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+9. Aba Geral - Nome: `postgres`
 
-## License
+10. Aba Conexão - Host: `database`, Port:`5432`, Username: `postgres`, Password: `postgres`
 
-Nest is [MIT licensed](LICENSE).
+11. Ao clicar em salvar, se todos os dados estiverem corretos você conseguirá conectar com sucesso.
+
+
+Após realizar esses passos,a API estará em execução e será possivel realizar as requisições.
+
+<hr>
+
+## ⚙️ Linguagem e Tecnologias utilizadas
+
+- `Typescript`
+- `NestJS`
+- `TypeORM`
+- `Postgres`
+- `Docker`
+
+<hr>
+
+## ⚙️ Modelo Entidade Relacionamento(DER):
+
+<div align="center">
+  
+![ModeloDoBanco](./documents/DER/ModeloDoBanco.png)
+
+</div>
+<hr>
+<br>
+
+## 🧭 Contrato de rotas da API:
+
+<div align="center">
+  
+![Arquivo contendo as rotas (Contrato)](./documents/Contrato-API/Contrato_Postman_2.1_collection)
+
+</div>
+
+
+
+
+
+

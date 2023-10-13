@@ -1,33 +1,26 @@
-import { ItemEntity } from 'src/modules/item/entities/item.entity';
+import { HistoricoPedidoEntity } from 'src/modules/historico_pedido/entities/historico.pedido.entity';
 import { TenantEntity } from 'src/modules/tenant/entities/tenant.entity';
 import {
 	Column,
 	CreateDateColumn,
 	DeleteDateColumn,
 	Entity,
-	ManyToOne,
 	OneToMany,
 	PrimaryGeneratedColumn,
-	Unique,
 	UpdateDateColumn,
 } from 'typeorm';
 
-@Entity({ name: 'categoria' })
-export class CategoriaEntity {
+@Entity({ name: 'status_pedido' })
+export class StatusPedidoEntity {
 	@PrimaryGeneratedColumn('uuid')
 	id: string;
 
-	@Unique(['descricao'])
-	@Column({ name: 'descricao', length: 255, nullable: false })
+	//HistoricoPedido
+	@OneToMany(() => HistoricoPedidoEntity, (historicoPedido) => historicoPedido.statusPedido)
+	historico: HistoricoPedidoEntity;
+
+	@Column({ name: 'descricao', length: 45, nullable: false })
 	descricao: string;
-
-	//Tenant
-	@ManyToOne(() => TenantEntity, (tenant) => tenant.categoria)
-	tenant: TenantEntity;
-
-	//Item
-	@OneToMany(() => ItemEntity, (item) => item.categoria)
-	item: ItemEntity[];
 
 	@CreateDateColumn({ name: 'criado_em' })
 	criadoEm: string;

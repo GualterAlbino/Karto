@@ -1,4 +1,3 @@
-import { ItemEntity } from 'src/modules/item/entities/item.entity';
 import { TenantEntity } from 'src/modules/tenant/entities/tenant.entity';
 import {
 	Column,
@@ -6,28 +5,21 @@ import {
 	DeleteDateColumn,
 	Entity,
 	ManyToOne,
-	OneToMany,
 	PrimaryGeneratedColumn,
-	Unique,
 	UpdateDateColumn,
 } from 'typeorm';
 
-@Entity({ name: 'categoria' })
-export class CategoriaEntity {
+@Entity({ name: 'banner' })
+export class BannerEntity {
 	@PrimaryGeneratedColumn('uuid')
 	id: string;
 
-	@Unique(['descricao'])
-	@Column({ name: 'descricao', length: 255, nullable: false })
-	descricao: string;
-
 	//Tenant
-	@ManyToOne(() => TenantEntity, (tenant) => tenant.categoria)
+	@ManyToOne(() => TenantEntity, (tenant) => tenant.banner)
 	tenant: TenantEntity;
 
-	//Item
-	@OneToMany(() => ItemEntity, (item) => item.categoria)
-	item: ItemEntity[];
+	@Column({ name: 'imagem', length: 255, nullable: true })
+	imagem: string;
 
 	@CreateDateColumn({ name: 'criado_em' })
 	criadoEm: string;

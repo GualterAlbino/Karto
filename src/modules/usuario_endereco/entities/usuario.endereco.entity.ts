@@ -1,4 +1,5 @@
 import { BairroEntity } from 'src/modules/bairro/entities/bairro.entity';
+import { PedidoEntity } from 'src/modules/pedido/entities/pedido.entity';
 import { UsuarioEntity } from 'src/modules/usuario/entities/usuario.entity';
 import {
 	Column,
@@ -6,8 +7,8 @@ import {
 	DeleteDateColumn,
 	Entity,
 	ManyToOne,
+	OneToMany,
 	PrimaryGeneratedColumn,
-	Unique,
 	UpdateDateColumn,
 } from 'typeorm';
 
@@ -16,13 +17,17 @@ export class UsuarioEnderecoEntity {
 	@PrimaryGeneratedColumn('uuid')
 	id: string;
 
-  //Usuario
-	@ManyToOne(() => UsuarioEntity, (usuario) => usuario.usuario_endereco)
+	//Usuario
+	@ManyToOne(() => UsuarioEntity, (usuario) => usuario.usuarioEndereco)
 	usuario: UsuarioEntity;
 
-  //Bairro
-  @ManyToOne(() => BairroEntity, (bairro) => bairro.usuario_endereco)
-  bairro: BairroEntity;
+	//Bairro
+	@ManyToOne(() => BairroEntity, (bairro) => bairro.usuario)
+	bairro: BairroEntity;
+
+	//Pedidos
+	@OneToMany(() => PedidoEntity, (pedido) => pedido.endereco)
+	pedido: PedidoEntity[];
 
 	@Column({ name: 'cep', length: 8, nullable: false })
 	cep: string;
