@@ -7,6 +7,7 @@ import { FiltroDeExcecaoHttp } from './middlewares/FiltroDeExcecaoHttp';
 import { UsuarioModule } from './modules/usuario/usuario.module';
 import { CategoriaModule } from './modules/categoria/categoria.module';
 import { EstadoModule } from './modules/estado/estado.module';
+import { CidadeModule } from './modules/cidade/cidade.module';
 
 @Module({
 	imports: [
@@ -22,6 +23,7 @@ import { EstadoModule } from './modules/estado/estado.module';
 		UsuarioModule,
 		CategoriaModule,
 		EstadoModule,
+		CidadeModule,
 	],
 	providers: [{ provide: APP_FILTER, useClass: FiltroDeExcecaoHttp }],
 })
