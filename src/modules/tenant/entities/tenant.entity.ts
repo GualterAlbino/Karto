@@ -54,7 +54,7 @@ export class TenantEntity {
 	@Column({ name: 'email', length: 45, nullable: false })
 	email: string;
 
-	@Column({ name: 'senha', length: 45, nullable: false })
+	@Column({ name: 'senha', length: 255, nullable: false })
 	senha: string;
 
 	@CreateDateColumn({ name: 'criado_em' })

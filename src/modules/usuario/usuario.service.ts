@@ -1,4 +1,8 @@
-import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import {
+	ConflictException,
+	Injectable,
+	NotFoundException,
+} from '@nestjs/common';
 import { CriaUsuarioDTO } from './dto/cria-usuario.dto';
 import { AtualizaUsuarioDTO } from './dto/atualiza-usuario.dto';
 import { UsuarioEntity } from './entities/usuario.entity';
@@ -23,11 +27,11 @@ export class UsuarioService {
 			usuarioEntity.email = dadosDoUsuario.email;
 			usuarioEntity.senha = dadosDoUsuario.senha;
 
-			if (
-				this.usuarioRepository.findOne({
-					where: { email: usuarioEntity.email },
-				})
-			) {
+			const checkEmail = await this.usuarioRepository.findOne({
+				where: { email: usuarioEntity.email },
+			});
+			//Valida se o e-mail já está sendo utilizado
+			if (checkEmail) {
 				throw new ConflictException(
 					`O e-mail ${usuarioEntity.email} já está sendo utilizado.`,
 				);
@@ -55,6 +59,7 @@ export class UsuarioService {
 
 	async buscaUsuarioPorEmail(email: string) {
 		try {
+			
 			const checkEmail = await this.usuarioRepository.findOne({
 				where: { email: email },
 			});
@@ -79,7 +84,10 @@ export class UsuarioService {
 
 	async atualizarUsuario(id: string, usuarioEntity: AtualizaUsuarioDTO) {
 		try {
-			const usuarioAtualizado = await this.usuarioRepository.update(id, usuarioEntity);
+			const usuarioAtualizado = await this.usuarioRepository.update(
+				id,
+				usuarioEntity,
+			);
 
 			if (usuarioAtualizado.affected === 0) {
 				throw new NotFoundException(

@@ -28,6 +28,20 @@
 - npm install dotenv
 //Instalando o dotenv
 
+-  npm i bcrypt@5.1.0 -E
+//Instalando o bcrypt
+
+- npm i --save-dev @types/bcrypt
+//Instalando os tipos do bcrypt
+ 
+// Para gerar uma SECRET_KEY (salt) valida:
+node --entra no ambiente node
+const bcrypt = require('bcrypt'); --importa o bcrypt
+bcrypt.genSaltSync(10); --Gera uma key aleatória
+
+
+//Instalação do JWT:
+- npm install @nestjs/jwt@10.1.0
 
 
 ---------------------------
@@ -74,6 +88,9 @@ Criar o banco de dados
 - nest g resource "nome da entidade" --no-spec
 //Gerador de CRUD sem teste(Controller, Service, Module)
 
+Exemplo de uso?
+
+- nest g resource modules/usuario --no-spec
 
 
 -------------------------

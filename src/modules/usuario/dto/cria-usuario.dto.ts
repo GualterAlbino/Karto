@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, MinLength } from "class-validator";
+import { IsNotEmpty, IsString, Matches, MinLength } from "class-validator";
 
 
 export class CriaUsuarioDTO {
@@ -12,6 +12,9 @@ export class CriaUsuarioDTO {
 
 	@IsString()
 	@IsNotEmpty({ message: 'Senha de usuario não pode ser vazio!' })
-	@MinLength(10, { message: 'A senha precisa ter pelo menos 10 caracteres' })
+	@MinLength(3, { message: 'A senha precisa ter pelo menos 3 caracteres' })
+	// @Matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\W+)(.{6,30})$/, {
+  //   message: 'A senha deve conter pelo menos uma letra minúscula, uma letra maiúscula, um dígito, um caractere especial e ter entre 3 e 30 caracteres',
+  // })
 	senha: string;
 }

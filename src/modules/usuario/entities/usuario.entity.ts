@@ -34,7 +34,7 @@ export class UsuarioEntity {
 	@Column({ name: 'email', length: 255, nullable: false })
 	email: string;
 
-	@Column({ name: 'senha', length: 10, nullable: false })
+	@Column({ name: 'senha', length: 255, nullable: false })
 	senha: string;
 
 	@CreateDateColumn({ name: 'criado_em' })
