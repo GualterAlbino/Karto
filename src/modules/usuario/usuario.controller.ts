@@ -13,20 +13,28 @@ import {
 import { UsuarioService } from './usuario.service';
 import { CriaUsuarioDTO } from './dto/cria-usuario.dto';
 import { AtualizaUsuarioDTO } from './dto/atualiza-usuario.dto';
+import { HashearSenhaPipe } from 'src/resources/pipes/hashear-senha.pipe';
+import { ListaUsuarioDTO } from './dto/lista-usuario.dto';
 
 @Controller('/usuario')
 export class UsuarioController {
 	constructor(private readonly usuarioService: UsuarioService) {}
 
 	@Post()
-	async criarUsuario(@Body() dadosDoUsuario: CriaUsuarioDTO) {
+	async criarUsuario(
+		@Body() { senha, ...dadosDoUsuario }: CriaUsuarioDTO, //Descarto a senha sem o HASH
+		@Body('senha', HashearSenhaPipe) senhaHasheada: string, //Aplicação do HASH de senha
+	) {
 		try {
-			const usuarioCriado =
-				await this.usuarioService.criarUsuario(dadosDoUsuario);
+			//Utilizo a senha com o HASH ao armazenar no banco
+			const usuarioCriado = await this.usuarioService.criarUsuario({
+				...dadosDoUsuario,
+				senha: senhaHasheada,
+			});
 
 			return {
 				mensagem: 'Usuario criado com sucesso!',
-				dados: usuarioCriado,
+				dados: new ListaUsuarioDTO(usuarioCriado.id, usuarioCriado.nome),
 			};
 		} catch (error) {
 			throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
@@ -56,7 +64,9 @@ export class UsuarioController {
 				};
 			}
 
-			return usuarioProcurado;
+			return {
+				dados: new ListaUsuarioDTO(usuarioProcurado.id, usuarioProcurado.nome),
+			};
 		} catch (error) {
 			throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
 		}
@@ -72,8 +82,9 @@ export class UsuarioController {
 					mensagem: 'Usuario não encontrado!',
 				};
 			}
-
-			return usuarioProcurado;
+			return {
+				dados: new ListaUsuarioDTO(usuarioProcurado.id, usuarioProcurado.nome),
+			};
 		} catch (error) {
 			throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
 		}
