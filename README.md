@@ -15,11 +15,12 @@
 <br>
 
 - Cada estabelecimento (tenant) pode cadastrar produtos a serem exibidos, bem como editar e excluir. Além disso o cliente final pode realizar os pedidos pela prorpia plataforma informando os itens e a forma de pagamento.
-  *Obs:* A realização das transações de pagamento não ocorrem na plataforma, o objetivo da aplicação é servir como um canal de exposição e pedidos de produtos.
+  _Obs:_ A realização das transações de pagamento não ocorrem na plataforma, o objetivo da aplicação é servir como um canal de exposição e pedidos de produtos.
 
 <hr>
 
 ## ✔️ Requisitos para utilização do projeto:
+
 - Possuir o Docker Desktop instalado e devidamente configurado
 - Possuir alguma Application Programming Interfaces, preferencialmente o POSTMAN devido as collections que acompanham os arquivos do projeto
 
@@ -31,26 +32,26 @@
 
 1. Após clonar o repositorio e abrir na IDE execute os comandos:
 
-2.  `docker-compose up -d` para subir o container e iniciar os serviços. O container foi divido em três serviços,sendo eles:
+2. `docker-compose up -d` para subir o container e iniciar os serviços. O container foi divido em três serviços,sendo eles:
+
 - Aplicação
 - Banco de Dados
 - pgAdmin (SBD)
 
 3. Feito isso, será necessario que acesse o pgAdmin (SBD escolhido) no proprio navegador pelo link: `http://localhost:8081/browser/`
 
-6. Ao acessar, deverá informar as credenciais de acesso ao painel administrativo:
+4. Ao acessar, deverá informar as credenciais de acesso ao painel administrativo:
 
-7. email: `gualter@email.com` senha: `postgres`
-*Obs:* Essa e outras informações de conexão estão disponiveis no arquivo *.env* que está público propositalmente.
+5. email: `gualter@email.com` senha: `postgres`
+   _Obs:_ Essa e outras informações de conexão estão disponiveis no arquivo _.env_ que está público propositalmente.
 
-8. Ao acessar, deve clicar em ADICIONAR NOVO SERVIDOR. A seguir os passos:
+6. Ao acessar, deve clicar em ADICIONAR NOVO SERVIDOR. A seguir os passos:
 
-9. Aba Geral - Nome: `postgres`
+7. Aba Geral - Nome: `postgres`
 
-10. Aba Conexão - Host: `database`, Port:`5432`, Username: `postgres`, Password: `postgres`
+8. Aba Conexão - Host: `database`, Port:`5432`, Username: `postgres`, Password: `postgres`
 
-11. Ao clicar em salvar, se todos os dados estiverem corretos você conseguirá conectar com sucesso.
-
+9. Ao clicar em salvar, se todos os dados estiverem corretos você conseguirá conectar com sucesso.
 
 Após realizar esses passos,a API estará em execução e será possivel realizar as requisições.
 
@@ -61,6 +62,8 @@ Após realizar esses passos,a API estará em execução e será possivel realiza
 - `Typescript`
 - `NestJS`
 - `TypeORM`
+- `JWT`
+- `Swagger`
 - `Postgres`
 - `Docker`
 
@@ -78,14 +81,10 @@ Após realizar esses passos,a API estará em execução e será possivel realiza
 
 ## 🧭 Contrato de rotas da API:
 
+- As rotas se encontram documentadas pelo Swagger no link: `http://localhost:3000/api#/`
+
 <div align="center">
   
 ![Arquivo contendo as rotas (Contrato)](./documents/Contrato-API/Contrato_Postman_2.1_collection)
 
 </div>
-
-
-
-
-
-
