@@ -8,12 +8,15 @@ import {
 	Delete,
 	HttpException,
 	HttpStatus,
+	UseGuards,
 } from '@nestjs/common';
 import { TenantService } from './tenant.service';
 import { CriaTenantDTO } from './dto/cria-tenant.dto';
 import { HashearSenhaPipe } from 'src/resources/pipes/hashear-senha.pipe';
 import { ListaTenantDTO } from './dto/lista-tenant.dto';
+import { AuthGuard } from '../auth/auth.guard';
 
+@UseGuards(AuthGuard)
 @Controller('tenant')
 export class TenantController {
 	constructor(private readonly tenantService: TenantService) {}
