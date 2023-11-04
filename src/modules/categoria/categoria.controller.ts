@@ -8,11 +8,14 @@ import {
 	Delete,
 	HttpStatus,
 	HttpException,
+	UseGuards,
 } from '@nestjs/common';
 import { CategoriaService } from './categoria.service';
 import { CriaCategoriaDto } from './dto/cria-categoria.dto';
 import { AtualizaCategoriaDto } from './dto/atualiza-categoria.dto';
+import { AuthGuard } from '../auth/auth.guard';
 
+@UseGuards(AuthGuard)
 @Controller('/categoria')
 export class CategoriaController {
 	constructor(private readonly categoriasService: CategoriaService) {}

@@ -9,12 +9,15 @@ import {
 	Logger,
 	HttpException,
 	HttpStatus,
+	UseGuards,
 } from '@nestjs/common';
 import { EstadoService } from './estado.service';
 import { CriaEstadoDto } from './dto/cria-estado.dto';
 import { AtualizaEstadoDto } from './dto/atualiza-estado.dto';
 import { EstadoEntity } from './entities/estado.entity';
+import { AuthGuard } from '../auth/auth.guard';
 
+@UseGuards(AuthGuard)
 @Controller('/estado')
 export class EstadoController {
 	constructor(private readonly estadoService: EstadoService) {}

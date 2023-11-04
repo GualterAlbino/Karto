@@ -9,13 +9,16 @@ import {
 	Logger,
 	HttpException,
 	HttpStatus,
+	UseGuards,
 } from '@nestjs/common';
 import { CidadeService } from './cidade.service';
 import { CriaCidadeDto } from './dto/cria-cidade.dto';
 import { AtualizaCidadeDto } from './dto/atualiza-cidade.dto';
 import { ListaCidadeDTO } from './dto/lista-cidade.dto';
 import { CidadeEntity } from './entities/cidade.entity';
+import { AuthGuard } from '../auth/auth.guard';
 
+@UseGuards(AuthGuard)
 @Controller('/cidade')
 export class CidadeController {
 		constructor(private readonly cidadeService: CidadeService) {}
