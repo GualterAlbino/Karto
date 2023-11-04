@@ -14,7 +14,7 @@ async function bootstrap() {
 		.setDescription(
 			'Rotas disponibilizadas... *Lembrete do Marcos: Mandar mensagem no grupo difamando o Saulo Cunha Campos',
 		)
-		.setVersion('0.0.7')
+		.setVersion('0.0.8')
 		.build();
 
 	const document = SwaggerModule.createDocument(app, config);
