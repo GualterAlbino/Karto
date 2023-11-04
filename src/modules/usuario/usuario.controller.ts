@@ -9,12 +9,14 @@ import {
 	HttpException,
 	HttpStatus,
 	Patch,
+	UseGuards,
 } from '@nestjs/common';
 import { UsuarioService } from './usuario.service';
 import { CriaUsuarioDTO } from './dto/cria-usuario.dto';
 import { AtualizaUsuarioDTO } from './dto/atualiza-usuario.dto';
 import { HashearSenhaPipe } from 'src/resources/pipes/hashear-senha.pipe';
 import { ListaUsuarioDTO } from './dto/lista-usuario.dto';
+import { AuthGuard } from '../auth/auth.guard';
 
 @Controller('/usuario')
 export class UsuarioController {
@@ -40,7 +42,7 @@ export class UsuarioController {
 			throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
 		}
 	}
-
+	@UseGuards(AuthGuard)
 	@Get()
 	async buscaTodosUsuarios() {
 		try {
@@ -52,6 +54,7 @@ export class UsuarioController {
 		}
 	}
 
+	@UseGuards(AuthGuard)
 	@Get('/:id')
 	async buscaUsuarioPorEmail(@Param('email') email: string) {
 		try {
@@ -72,6 +75,7 @@ export class UsuarioController {
 		}
 	}
 
+	@UseGuards(AuthGuard)
 	@Get('/:id')
 	async buscaUsuarioPorID(@Param('id') id: string) {
 		try {
@@ -90,6 +94,7 @@ export class UsuarioController {
 		}
 	}
 
+	@UseGuards(AuthGuard)
 	@Patch('/:id')
 	async atualizarUsuario(
 		@Param('id') id: string,
@@ -109,6 +114,7 @@ export class UsuarioController {
 		}
 	}
 
+	@UseGuards(AuthGuard)
 	@Delete('/:id')
 	async deletarUsuario(@Param('id') id: string) {
 		try {

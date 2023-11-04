@@ -92,7 +92,8 @@ Exemplo de uso?
 
 - nest g resource modules/usuario --no-spec
 
-
+Gera o modulo de autenticaçaõ
+- nest g guard modules/auth --no-spec
 -------------------------
 # Anotações sobre o DockerFile (Copie e cole em um DockerFile para melhor visualização)
 

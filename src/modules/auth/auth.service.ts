@@ -5,9 +5,9 @@ import { UnauthorizedException } from '@nestjs/common/exceptions/unauthorized.ex
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 
-interface PayloadInterface {
-	sub: string;
-	email: string;
+export interface PayloadInterface {
+	sub: string; //ID do usuario
+	email: string; //Email do usuario
 }
 
 @Injectable()
