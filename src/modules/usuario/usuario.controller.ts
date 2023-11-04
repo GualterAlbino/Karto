@@ -10,6 +10,7 @@ import {
 	HttpStatus,
 	Patch,
 	UseGuards,
+	Query,
 } from '@nestjs/common';
 import { UsuarioService } from './usuario.service';
 import { CriaUsuarioDTO } from './dto/cria-usuario.dto';
@@ -58,7 +59,26 @@ export class UsuarioController {
 
 	@UseGuards(AuthGuard)
 	@Get('/:id')
-	async buscaUsuarioPorEmail(@Param('email') email: string) {
+	async buscaUsuarioPorID(@Param('id') id: string) {
+		try {
+			const usuarioProcurado = await this.usuarioService.buscaUsuarioPorID(id);
+
+			if (usuarioProcurado == null) {
+				return {
+					mensagem: 'Usuario não encontrado!',
+				};
+			}
+			return {
+				dados: new ListaUsuarioDTO(usuarioProcurado.id, usuarioProcurado.nome),
+			};
+		} catch (error) {
+			throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+		}
+	}
+
+	@UseGuards(AuthGuard)
+	@Get('/:email')
+	async buscaUsuarioPorEmail(@Query('email') email: string) {
 		try {
 			const usuarioProcurado =
 				await this.usuarioService.buscaUsuarioPorEmail(email);
@@ -78,26 +98,7 @@ export class UsuarioController {
 	}
 
 	@UseGuards(AuthGuard)
-	@Get('/:id')
-	async buscaUsuarioPorID(@Param('id') id: string) {
-		try {
-			const usuarioProcurado = await this.usuarioService.buscaUsuarioPorID(id);
-
-			if (usuarioProcurado == null) {
-				return {
-					mensagem: 'Usuario não encontrado!',
-				};
-			}
-			return {
-				dados: new ListaUsuarioDTO(usuarioProcurado.id, usuarioProcurado.nome),
-			};
-		} catch (error) {
-			throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
-		}
-	}
-
-	@UseGuards(AuthGuard)
-	@Patch('/:id')
+	@Put('/:id')
 	async atualizarUsuario(
 		@Param('id') id: string,
 		@Body() dadosDoUsuario: AtualizaUsuarioDTO,
