@@ -17,7 +17,9 @@ import { AtualizaUsuarioDTO } from './dto/atualiza-usuario.dto';
 import { HashearSenhaPipe } from 'src/resources/pipes/hashear-senha.pipe';
 import { ListaUsuarioDTO } from './dto/lista-usuario.dto';
 import { AuthGuard } from '../auth/auth.guard';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('usuario')
 @Controller('/usuario')
 export class UsuarioController {
 	constructor(private readonly usuarioService: UsuarioService) {}

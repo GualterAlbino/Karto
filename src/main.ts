@@ -2,9 +2,23 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { useContainer } from 'class-validator';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+//import { version } from './app.module/';
 
 async function bootstrap() {
 	const app = await NestFactory.create(AppModule);
+
+	//Documentação com Swagger
+	const config = new DocumentBuilder()
+		.setTitle('Documentação da API - Aplicação Karto')
+		.setDescription(
+			'Rotas disponibilizadas... *Lembrete do Marcos: Mandar mensagem no grupo difamando o Saulo Cunha Campos',
+		)
+		.setVersion('0.0.7')
+		.build();
+
+	const document = SwaggerModule.createDocument(app, config);
+	SwaggerModule.setup('api', app, document);
 
 	//Validação de Dados
 	app.useGlobalPipes(
