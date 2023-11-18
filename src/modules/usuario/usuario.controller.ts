@@ -19,7 +19,7 @@ import { ListaUsuarioDTO } from './dto/lista-usuario.dto';
 import { AuthGuard } from '../auth/auth.guard';
 import { ApiTags } from '@nestjs/swagger';
 
-@ApiTags('usuario')
+@ApiTags('Usuario')
 @Controller('/usuario')
 export class UsuarioController {
 	constructor(private readonly usuarioService: UsuarioService) {}
@@ -44,6 +44,7 @@ export class UsuarioController {
 			throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
 		}
 	}
+
 	@UseGuards(AuthGuard)
 	@Get()
 	async buscaTodosUsuarios() {

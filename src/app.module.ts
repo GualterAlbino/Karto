@@ -11,7 +11,6 @@ import { CidadeModule } from './modules/cidade/cidade.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { TenantModule } from './modules/tenant/tenant.module';
 
-
 @Module({
 	imports: [
 		ConfigModule.forRoot(
