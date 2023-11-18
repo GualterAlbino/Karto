@@ -16,8 +16,10 @@ import { CriaEstadoDto } from './dto/cria-estado.dto';
 import { AtualizaEstadoDto } from './dto/atualiza-estado.dto';
 import { EstadoEntity } from './entities/estado.entity';
 import { AuthGuard } from '../auth/auth.guard';
+import { ApiTags } from '@nestjs/swagger';
 
 @UseGuards(AuthGuard)
+@ApiTags('Estado')
 @Controller('/estado')
 export class EstadoController {
 	constructor(private readonly estadoService: EstadoService) {}
@@ -53,9 +55,7 @@ export class EstadoController {
 		try {
 			let estadoProcurado: EstadoEntity;
 
-			if (tipo === 'id') {
-				estadoProcurado = await this.estadoService.buscaEstadoPorID(valor);
-			} else if (tipo === 'uf') {
+			if (tipo === 'uf') {
 				estadoProcurado = await this.estadoService.buscaEstadoPorUF(valor);
 			} else if (tipo === 'descricao') {
 				estadoProcurado =

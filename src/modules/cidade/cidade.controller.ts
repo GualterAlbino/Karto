@@ -17,15 +17,29 @@ import { AtualizaCidadeDto } from './dto/atualiza-cidade.dto';
 import { ListaCidadeDTO } from './dto/lista-cidade.dto';
 import { CidadeEntity } from './entities/cidade.entity';
 import { AuthGuard } from '../auth/auth.guard';
+import { ApiTags } from '@nestjs/swagger';
+import { EstadoService } from '../estado/estado.service';
 
 @UseGuards(AuthGuard)
+@ApiTags('Cidade')
 @Controller('/cidade')
 export class CidadeController {
-		constructor(private readonly cidadeService: CidadeService) {}
+	constructor(
+		private readonly cidadeService: CidadeService,
+		private readonly estadoService: EstadoService,
+	) {}
 
 	@Post()
-	async criarCidade(@Body() dadosCidade:CriaCidadeDto) {
+	async criarCidade(@Body() dadosCidade: CriaCidadeDto) {
 		try {
+			const checkEstado = await this.estadoService.buscaEstadoPorUF(dadosCidade.estado.uf)
+
+			if (!checkEstado) {
+				return {
+					mensagem: 'Estado informado para cidade não existe na base de dados!',
+				};
+			}
+
 			const cidadeCriada = await this.cidadeService.criarCidade(dadosCidade);
 
 			return {
@@ -36,7 +50,7 @@ export class CidadeController {
 			throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
 		}
 	}
-	
+
 	@Get()
 	async buscaTodasCidades() {
 		try {
@@ -49,7 +63,6 @@ export class CidadeController {
 	}
 
 	//Aplicando o metodo chamado "Trasnformaçao de Parametros" podemos passar o tipo de busca que queremos
-
 	@Get('/:tipo/:valor')
 	async buscar(@Param('tipo') tipo: string, @Param('valor') valor: string) {
 		try {
@@ -57,7 +70,7 @@ export class CidadeController {
 
 			if (tipo === 'id') {
 				cidadeProcurada = await this.cidadeService.buscaCidadePorID(valor);
-			}else if (tipo === 'descricao') {
+			} else if (tipo === 'descricao') {
 				cidadeProcurada =
 					await this.cidadeService.buscaCidadePorDescricao(valor);
 			} else {
@@ -111,5 +124,4 @@ export class CidadeController {
 			throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
 		}
 	}
-
 }

@@ -18,16 +18,16 @@ export class TenantService {
 		private readonly tenantRepository: Repository<TenantEntity>,
 	) {}
 
-	async criarTenant(dadosDoUsuario: CriaTenantDTO) {
+	async criarTenant(dadosDoTenant: CriaTenantDTO) {
 		try {
 			const tenantEntity = new TenantEntity();
 
 			tenantEntity.id = uuid(); //??
-			tenantEntity.slug = dadosDoUsuario.slug;
-			tenantEntity.nome = dadosDoUsuario.nome;
-			tenantEntity.email = dadosDoUsuario.email;
-			tenantEntity.senha = dadosDoUsuario.senha;
-			tenantEntity.corPrincipal = dadosDoUsuario.corPrincipal;
+			tenantEntity.slug = dadosDoTenant.slug;
+			tenantEntity.nome = dadosDoTenant.nome;
+			tenantEntity.corPrincipal = dadosDoTenant.corPrincipal;
+			tenantEntity.email = dadosDoTenant.email;
+			tenantEntity.senha = dadosDoTenant.senha;
 
 			const checkEmail = await this.tenantRepository.findOne({
 				where: { email: tenantEntity.email },
@@ -50,7 +50,7 @@ export class TenantService {
 			const tenantsExistentes = await this.tenantRepository.find();
 
 			const tenants = tenantsExistentes.map(
-				(tenant) => new ListaTenantDTO(tenant.id, tenant.nome),
+				(tenant) => new ListaTenantDTO(tenant.slug, tenant.nome, tenant.corPrincipal),
 			);
 
 			return tenants;
@@ -78,6 +78,18 @@ export class TenantService {
 			});
 
 			return checkID;
+		} catch (error) {
+			throw new ConflictException(error.message);
+		}
+	}
+
+	async buscaTenantPorSlug(slug: string) {
+		try {
+			const checkSlug = await this.tenantRepository.findOne({
+				where: { slug },
+			});
+
+			return checkSlug;
 		} catch (error) {
 			throw new ConflictException(error.message);
 		}

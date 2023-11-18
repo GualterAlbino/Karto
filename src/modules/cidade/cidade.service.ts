@@ -18,43 +18,46 @@ export class CidadeService {
 		private readonly cidadeRepository: Repository<CidadeEntity>,
 	) {}
 
-  async criarCidade(dadosCiadade: CriaCidadeDto){
-    try{
-      const cidadeExistente = await this.cidadeRepository.findOne({
-        where: {descricao: dadosCiadade.descricao},
-      });
-      if (cidadeExistente){
-        throw new ConflictException(
-          `Já existe uma cidade cadastrada com o nome ${dadosCiadade.descricao}`
-        );
-      }
+	async criarCidade(dadosCidade: CriaCidadeDto) {
+		try {
+			const cidadeExistente = await this.cidadeRepository.findOne({
+				where: { descricao: dadosCidade.descricao },
+			});
 
-      const cidadeEntity = new CidadeEntity();
+			if (cidadeExistente) {
+				throw new ConflictException(
+					`Já existe uma cidade cadastrada com o nome ${dadosCidade.descricao}`,
+				);
+			}
 
-      cidadeEntity.id = uuid();
-      cidadeEntity.descricao = dadosCiadade.descricao;
+			const cidadeEntity = new CidadeEntity();
 
-      return this.cidadeRepository.save(cidadeEntity);
-      }catch(error){
-        throw new ConflictException (`${error.message}`);
-    }
-  }
+			cidadeEntity.id = uuid();
+			cidadeEntity.descricao = dadosCidade.descricao;
+			cidadeEntity.valor_frete = dadosCidade.valorFrete;
+			cidadeEntity.estado = dadosCidade.estado;
 
-  async buscaTodasCidades() {
-    try {
-      const cidadeExistentes = await this.cidadeRepository.find();
-    
-      const cidades = cidadeExistentes.map(
-        (cidade) => new ListaCidadeDTO(cidade.id, cidade.descricao),
-      );
-      
-      return cidades; 
-    } catch (error) {
+			return this.cidadeRepository.save(cidadeEntity);
+		} catch (error) {
 			throw new ConflictException(`${error.message}`);
 		}
-  }
+	}
 
-  async buscaCidadePorDescricao(descricao: string) {
+	async buscaTodasCidades() {
+		try {
+			const cidadeExistentes = await this.cidadeRepository.find();
+
+			const cidades = cidadeExistentes.map(
+				(cidade) => new ListaCidadeDTO(cidade.id, cidade.descricao),
+			);
+
+			return cidades;
+		} catch (error) {
+			throw new ConflictException(`${error.message}`);
+		}
+	}
+
+	async buscaCidadePorDescricao(descricao: string) {
 		try {
 			const checkDesc = await this.cidadeRepository.findOne({
 				where: { descricao },
@@ -66,7 +69,7 @@ export class CidadeService {
 		}
 	}
 
-  async buscaCidadePorID(id: string) {
+	async buscaCidadePorID(id: string) {
 		try {
 			const checkDesc = await this.cidadeRepository.findOne({
 				where: { id },
@@ -78,10 +81,10 @@ export class CidadeService {
 		}
 	}
 
-  async atualizarCidade(descricao: string, cidadeEntity: AtualizaCidadeDto) {
+	async atualizarCidade(descricao: string, cidadeEntity: AtualizaCidadeDto) {
 		try {
 			const ciadeAtualizada = await this.cidadeRepository.update(
-				{ descricao:descricao },
+				{ descricao: descricao },
 				cidadeEntity,
 			);
 
@@ -95,7 +98,7 @@ export class CidadeService {
 		}
 	}
 
-  async deletarCidade(id: string) {
+	async deletarCidade(id: string) {
 		try {
 			const resultadoDelecao = await this.cidadeRepository.delete({ id: id });
 			if (resultadoDelecao.affected === 0) {
@@ -108,5 +111,4 @@ export class CidadeService {
 			throw new ConflictException(error.message);
 		}
 	}
-
 }

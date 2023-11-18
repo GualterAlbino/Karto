@@ -5,15 +5,15 @@ import {
 	DeleteDateColumn,
 	Entity,
 	OneToMany,
-	PrimaryGeneratedColumn,
+	PrimaryColumn,
 	Unique,
 	UpdateDateColumn,
 } from 'typeorm';
 
 @Entity({ name: 'estado' })
 export class EstadoEntity {
-	@PrimaryGeneratedColumn('uuid')
-	id: string;
+	@PrimaryColumn({ name: 'uf', length: 2, nullable: false })
+	uf: string;
 
 	@OneToMany(() => CidadeEntity, (cidade) => cidade.estado)
 	cidade: CidadeEntity[];
@@ -21,10 +21,6 @@ export class EstadoEntity {
 	@Unique(['descricao'])
 	@Column({ name: 'descricao', length: 45, nullable: false })
 	descricao: string;
-
-	@Unique(['uf'])
-	@Column({ name: 'uf', length: 2, nullable: false })
-	uf: string;
 
 	@CreateDateColumn({ name: 'criado_em' })
 	criadoEm: string;

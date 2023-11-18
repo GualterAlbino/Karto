@@ -10,6 +10,7 @@ import {
 	HttpStatus,
 	Patch,
 	UseGuards,
+	Query,
 } from '@nestjs/common';
 import { UsuarioService } from './usuario.service';
 import { CriaUsuarioDTO } from './dto/cria-usuario.dto';
@@ -19,7 +20,7 @@ import { ListaUsuarioDTO } from './dto/lista-usuario.dto';
 import { AuthGuard } from '../auth/auth.guard';
 import { ApiTags } from '@nestjs/swagger';
 
-@ApiTags('usuario')
+@ApiTags('Usuario')
 @Controller('/usuario')
 export class UsuarioController {
 	constructor(private readonly usuarioService: UsuarioService) {}
@@ -44,6 +45,7 @@ export class UsuarioController {
 			throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
 		}
 	}
+
 	@UseGuards(AuthGuard)
 	@Get()
 	async buscaTodosUsuarios() {
@@ -51,27 +53,6 @@ export class UsuarioController {
 			const usuarios = await this.usuarioService.buscaTodosUsuarios();
 
 			return usuarios;
-		} catch (error) {
-			throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
-		}
-	}
-
-	@UseGuards(AuthGuard)
-	@Get('/:id')
-	async buscaUsuarioPorEmail(@Param('email') email: string) {
-		try {
-			const usuarioProcurado =
-				await this.usuarioService.buscaUsuarioPorEmail(email);
-
-			if (usuarioProcurado == null) {
-				return {
-					mensagem: 'Usuario não encontrado!',
-				};
-			}
-
-			return {
-				dados: new ListaUsuarioDTO(usuarioProcurado.id, usuarioProcurado.nome),
-			};
 		} catch (error) {
 			throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
 		}
@@ -97,7 +78,28 @@ export class UsuarioController {
 	}
 
 	@UseGuards(AuthGuard)
-	@Patch('/:id')
+	@Get('/:email')
+	async buscaUsuarioPorEmail(@Query('email') email: string) {
+		try {
+			const usuarioProcurado =
+				await this.usuarioService.buscaUsuarioPorEmail(email);
+
+			if (usuarioProcurado == null) {
+				return {
+					mensagem: 'Usuario não encontrado!',
+				};
+			}
+
+			return {
+				dados: new ListaUsuarioDTO(usuarioProcurado.id, usuarioProcurado.nome),
+			};
+		} catch (error) {
+			throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+		}
+	}
+
+	@UseGuards(AuthGuard)
+	@Put('/:id')
 	async atualizarUsuario(
 		@Param('id') id: string,
 		@Body() dadosDoUsuario: AtualizaUsuarioDTO,
