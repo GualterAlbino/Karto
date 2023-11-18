@@ -14,7 +14,7 @@ async function bootstrap() {
 		.setDescription(
 			'Rotas disponibilizadas...',
 		)
-		.setVersion('0.0.8')
+		.setVersion('0.0.9')
 		.build();
 
 	const document = SwaggerModule.createDocument(app, config);
