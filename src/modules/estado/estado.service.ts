@@ -32,9 +32,8 @@ export class EstadoService {
 
 			const estadoEntity = new EstadoEntity();
 
-			estadoEntity.id = uuid();
-			estadoEntity.descricao = dadosEstado.descricao;
 			estadoEntity.uf = dadosEstado.uf;
+			estadoEntity.descricao = dadosEstado.descricao;
 
 			return this.estadoRepository.save(estadoEntity);
 		} catch (error) {
@@ -47,7 +46,7 @@ export class EstadoService {
 			const estadoExistentes = await this.estadoRepository.find();
 
 			const estados = estadoExistentes.map(
-				(estado) => new ListaEstadoDTO(estado.id, estado.descricao, estado.uf),
+				(estado) => new ListaEstadoDTO(estado.uf, estado.descricao)
 			);
 
 			return estados;
@@ -77,18 +76,6 @@ export class EstadoService {
 			return checkUF;
 		} catch (error) {
 			throw new ConflictException(error.message);
-		}
-	}
-
-	async buscaEstadoPorID(id: string) {
-		try {
-			const checkID = await this.estadoRepository.findOne({
-				where: { id },
-			});
-
-			return checkID;
-		} catch (error) {
-			throw new ConflictException(`${error.message}`);
 		}
 	}
 

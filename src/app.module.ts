@@ -10,6 +10,7 @@ import { EstadoModule } from './modules/estado/estado.module';
 import { CidadeModule } from './modules/cidade/cidade.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { TenantModule } from './modules/tenant/tenant.module';
+import { StatusTenantModule } from './modules/status_tenant/status.tenant.module';
 
 @Module({
 	imports: [
@@ -28,6 +29,7 @@ import { TenantModule } from './modules/tenant/tenant.module';
 		CidadeModule,
 		AuthModule,
 		TenantModule,
+		StatusTenantModule,
 	],
 	providers: [{ provide: APP_FILTER, useClass: FiltroDeExcecaoHttp }],
 })

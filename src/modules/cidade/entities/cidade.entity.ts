@@ -1,6 +1,5 @@
 import { BairroEntity } from 'src/modules/bairro/entities/bairro.entity';
 import { EstadoEntity } from 'src/modules/estado/entities/estado.entity';
-import { UsuarioEntity } from 'src/modules/usuario/entities/usuario.entity';
 import {
 	Column,
 	CreateDateColumn,
@@ -21,7 +20,7 @@ export class CidadeEntity {
 	@ManyToOne(() => EstadoEntity, (estado) => estado.cidade)
 	estado: EstadoEntity;
 
-  //Bairro
+	//Bairro
 	@OneToMany(() => BairroEntity, (bairro) => bairro.cidade)
 	bairro: BairroEntity[];
 
