@@ -11,6 +11,7 @@ import { CidadeModule } from './modules/cidade/cidade.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { TenantModule } from './modules/tenant/tenant.module';
 import { StatusTenantModule } from './modules/status_tenant/status.tenant.module';
+import { ItemModule } from './modules/item/item.module';
 
 @Module({
 	imports: [
@@ -30,6 +31,7 @@ import { StatusTenantModule } from './modules/status_tenant/status.tenant.module
 		AuthModule,
 		TenantModule,
 		StatusTenantModule,
+		ItemModule,
 	],
 	providers: [{ provide: APP_FILTER, useClass: FiltroDeExcecaoHttp }],
 })

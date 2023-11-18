@@ -12,7 +12,7 @@ async function bootstrap() {
 	const config = new DocumentBuilder()
 		.setTitle('Documentação da API - Aplicação Karto')
 		.setDescription(
-			'Rotas disponibilizadas... *Lembrete do Marcos: Mandar mensagem no grupo difamando o Saulo Cunha Campos',
+			'Rotas disponibilizadas...',
 		)
 		.setVersion('0.0.8')
 		.build();
