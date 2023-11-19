@@ -1,25 +1,36 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsOptional } from "class-validator";
+import { IsNotEmpty, IsOptional, IsString } from "class-validator";
 import { CategoriaEntity } from "src/modules/categoria/entities/categoria.entity";
 import { TenantEntity } from "src/modules/tenant/entities/tenant.entity";
 
 export class CriaItemDTO {
 	@ApiProperty()
+  @IsString()
+	@IsNotEmpty()
 	nome: string;
 
   @ApiProperty()
+  @IsString()
+	@IsNotEmpty()
 	descricao: string;
 
   @ApiProperty()
-  @IsOptional()
+  @IsString()
+	@IsNotEmpty()
 	imagem: string;
 
   @ApiProperty()
+	@IsNotEmpty()
 	valor: Number;
 
   @ApiProperty()
-  tenant: string
+  @IsString()
+	@IsNotEmpty()
+  tenantId: string
 
   @ApiProperty()
-  categoria: string
+  @IsString()
+	@IsNotEmpty()
+  categoriaId: string
+
 }

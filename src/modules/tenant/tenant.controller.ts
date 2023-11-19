@@ -36,7 +36,7 @@ export class TenantController {
 
 			return {
 				mensagem: 'Usuario criado com sucesso!',
-				dados: new ListaTenantDTO(tenantCriado.slug, tenantCriado.nome, tenantCriado.corPrincipal),
+				dados: new ListaTenantDTO(tenantCriado.id, tenantCriado.slug, tenantCriado.nome, tenantCriado.corPrincipal),
 			};
 		} catch (error) {
 			throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
@@ -68,7 +68,7 @@ export class TenantController {
 			}
 
 			return {
-				dados: new ListaTenantDTO(tenantProcurado.slug, tenantProcurado.nome, tenantProcurado.corPrincipal),
+				dados: new ListaTenantDTO(tenantProcurado.id,tenantProcurado.slug, tenantProcurado.nome, tenantProcurado.corPrincipal),
 			};
 		} catch (error) {
 			throw new HttpException(error.message, HttpStatus.BAD_REQUEST);

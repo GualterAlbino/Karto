@@ -13,6 +13,16 @@
 				{
 					"name": "Listar Categorias",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzODk4Y2U0NS1jNjZkLTRiZmUtOGQ4Yi1jNmY0MmNkMGIzZTYiLCJlbWFpbCI6Imd1YWx0ZXJAZ21haWwuY29tIiwiaWF0IjoxNzAwMzM4MTQzLCJleHAiOjE3MDAzNDE3NDN9.Z4Rp8tdeZ6tOTeimJyN6oCWadvUu0aQEEJleyePPw5w",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -52,6 +62,16 @@
 				{
 					"name": "Criar Categoria",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1M2Q0ZjE2ZS05N2Y2LTQ0YjEtOGQ1MS00YjEzZjBlY2IxODIiLCJlbWFpbCI6Imd1YWx0ZXJAZ21haWwuY29tIiwiaWF0IjoxNzAwMzQyNjc0LCJleHAiOjE3MDAzNDYyNzR9.k4bLeey9Lsal9Q4vBFmDuIQWWWtDxmJQXS34ZITOC3Y",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -109,10 +129,20 @@
 				{
 					"name": "Deletar Categoria",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzODk4Y2U0NS1jNjZkLTRiZmUtOGQ4Yi1jNmY0MmNkMGIzZTYiLCJlbWFpbCI6Imd1YWx0ZXJAZ21haWwuY29tIiwiaWF0IjoxNzAwMzM4MTQzLCJleHAiOjE3MDAzNDE3NDN9.Z4Rp8tdeZ6tOTeimJyN6oCWadvUu0aQEEJleyePPw5w",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/categoria/Teste2",
+							"raw": "http://localhost:3000/categoria/Teste",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -120,7 +150,7 @@
 							"port": "3000",
 							"path": [
 								"categoria",
-								"Teste2"
+								"Teste"
 							]
 						}
 					},
@@ -134,6 +164,16 @@
 				{
 					"name": "Criar Estado",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzODk4Y2U0NS1jNjZkLTRiZmUtOGQ4Yi1jNmY0MmNkMGIzZTYiLCJlbWFpbCI6Imd1YWx0ZXJAZ21haWwuY29tIiwiaWF0IjoxNzAwMzM4MTQzLCJleHAiOjE3MDAzNDE3NDN9.Z4Rp8tdeZ6tOTeimJyN6oCWadvUu0aQEEJleyePPw5w",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -183,6 +223,16 @@
 				{
 					"name": "Busca por UF",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzODk4Y2U0NS1jNjZkLTRiZmUtOGQ4Yi1jNmY0MmNkMGIzZTYiLCJlbWFpbCI6Imd1YWx0ZXJAZ21haWwuY29tIiwiaWF0IjoxNzAwMzM4MTQzLCJleHAiOjE3MDAzNDE3NDN9.Z4Rp8tdeZ6tOTeimJyN6oCWadvUu0aQEEJleyePPw5w",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -204,6 +254,16 @@
 				{
 					"name": "Busca por Descricao",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzODk4Y2U0NS1jNjZkLTRiZmUtOGQ4Yi1jNmY0MmNkMGIzZTYiLCJlbWFpbCI6Imd1YWx0ZXJAZ21haWwuY29tIiwiaWF0IjoxNzAwMzM4MTQzLCJleHAiOjE3MDAzNDE3NDN9.Z4Rp8tdeZ6tOTeimJyN6oCWadvUu0aQEEJleyePPw5w",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -225,6 +285,16 @@
 				{
 					"name": "Editar Estado",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzODk4Y2U0NS1jNjZkLTRiZmUtOGQ4Yi1jNmY0MmNkMGIzZTYiLCJlbWFpbCI6Imd1YWx0ZXJAZ21haWwuY29tIiwiaWF0IjoxNzAwMzM4MTQzLCJleHAiOjE3MDAzNDE3NDN9.Z4Rp8tdeZ6tOTeimJyN6oCWadvUu0aQEEJleyePPw5w",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PATCH",
 						"header": [],
 						"body": {
@@ -254,6 +324,16 @@
 				{
 					"name": "Deletar Estado",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzODk4Y2U0NS1jNjZkLTRiZmUtOGQ4Yi1jNmY0MmNkMGIzZTYiLCJlbWFpbCI6Imd1YWx0ZXJAZ21haWwuY29tIiwiaWF0IjoxNzAwMzM4MTQzLCJleHAiOjE3MDAzNDE3NDN9.Z4Rp8tdeZ6tOTeimJyN6oCWadvUu0aQEEJleyePPw5w",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
@@ -274,6 +354,16 @@
 				{
 					"name": "Listar Estados",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzODk4Y2U0NS1jNjZkLTRiZmUtOGQ4Yi1jNmY0MmNkMGIzZTYiLCJlbWFpbCI6Imd1YWx0ZXJAZ21haWwuY29tIiwiaWF0IjoxNzAwMzM4MTQzLCJleHAiOjE3MDAzNDE3NDN9.Z4Rp8tdeZ6tOTeimJyN6oCWadvUu0aQEEJleyePPw5w",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -285,6 +375,159 @@
 							"port": "3000",
 							"path": [
 								"estado"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cidade",
+			"item": [
+				{
+					"name": "Criar Cidade",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzODk4Y2U0NS1jNjZkLTRiZmUtOGQ4Yi1jNmY0MmNkMGIzZTYiLCJlbWFpbCI6Imd1YWx0ZXJAZ21haWwuY29tIiwiaWF0IjoxNzAwMzM4MTQzLCJleHAiOjE3MDAzNDE3NDN9.Z4Rp8tdeZ6tOTeimJyN6oCWadvUu0aQEEJleyePPw5w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \r\n    \"descricao\": \"Ubá\",\r\n    \"valorFrete\":10,\r\n    \"estado\":\"SP\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/cidade",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"cidade"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Busca Por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/cidade/id/d6ebf6be-c75a-4a46-949e-c37a9db9f807",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"cidade",
+								"id",
+								"d6ebf6be-c75a-4a46-949e-c37a9db9f807"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Busca por Descricao",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/cidade/descricao/Ubá",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"cidade",
+								"descricao",
+								"Ubá"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar Cidade",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descricao\": \"São Geraldo\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/cidade/Ubá",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"cidade",
+								"Ubá"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Cidade",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/cidade/d6ebf6be-c75a-4a46-949e-c37a9db9f807",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"cidade",
+								"d6ebf6be-c75a-4a46-949e-c37a9db9f807"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Cidades",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/cidade",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"cidade"
 							]
 						}
 					},
@@ -348,35 +591,55 @@
 			]
 		},
 		{
-			"name": "Produto",
+			"name": "Item",
 			"item": [
 				{
-					"name": "Listar Produtos",
+					"name": "Listar Itens",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1M2Q0ZjE2ZS05N2Y2LTQ0YjEtOGQ1MS00YjEzZjBlY2IxODIiLCJlbWFpbCI6Imd1YWx0ZXJAZ21haWwuY29tIiwiaWF0IjoxNzAwNDAwOTEzLCJleHAiOjE3MDA0MDQ1MTN9.ivP0_QqvCMuBWa8YDLHcwOZXInnWjV5uzd2Cc4ByLvQ",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/produto",
+							"raw": "http://localhost:3000/item",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"produto"
+								"item"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Criar Produto",
+					"name": "Criar Item",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1M2Q0ZjE2ZS05N2Y2LTQ0YjEtOGQ1MS00YjEzZjBlY2IxODIiLCJlbWFpbCI6Imd1YWx0ZXJAZ21haWwuY29tIiwiaWF0IjoxNzAwNDAwOTEzLCJleHAiOjE3MDA0MDQ1MTN9.ivP0_QqvCMuBWa8YDLHcwOZXInnWjV5uzd2Cc4ByLvQ",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{   \r\n    \r\n    \"nome\": \"Figura de ação Marvel Homem Aranha Olympus Homem Aranha E6358 de Hasbro Classic\",\r\n    \"valor\": 70.0,\r\n    \"quantidadeDisponivel\": 10,\r\n    \"descricao\": \"Produto novo, bem acabado, alegria para colecionadores\",\r\n    \"caracteristicas\": [{\r\n        \"nome\": \"Fabricante\",\r\n        \"descricao\": \"Iron Studios\"\r\n    },{\r\n        \"nome\": \"material\",\r\n        \"descricao\": \"Plástico\"\r\n    }],\r\n    \"imagens\": [{\r\n        \"url\": \"https://i.imgur.com/dwDZICq.jpg\",\r\n        \"descricao\": \"Imagem do Homem Aranha\"\r\n    }],\r\n    \"categoria\": \"Colecionáveis\"\r\n \r\n}",
+							"raw": "{\r\n    \"nome\": \"Ponteiro Misterio3\",\r\n    \"descricao\": \"Aponta para o inferno\",\r\n    \"imagem\": \"base64 - Se vira Marcos\",\r\n    \"valor\": 10,\r\n    \"tenantId\": \"53d4f16e-97f6-44b1-8d51-4b13f0ecb182\",\r\n    \"categoriaId\": \"2950b743-f57e-4cb7-8e7a-90cbdd416c3d\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -384,14 +647,131 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/produto",
+							"raw": "http://localhost:3000/item",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"produto"
+								"item"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Item por Tenant",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1M2Q0ZjE2ZS05N2Y2LTQ0YjEtOGQ1MS00YjEzZjBlY2IxODIiLCJlbWFpbCI6Imd1YWx0ZXJAZ21haWwuY29tIiwiaWF0IjoxNzAwNDAwOTEzLCJleHAiOjE3MDA0MDQ1MTN9.ivP0_QqvCMuBWa8YDLHcwOZXInnWjV5uzd2Cc4ByLvQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/item/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"item",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "53d4f16e-97f6-44b1-8d51-4b13f0ecb182"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Item",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1M2Q0ZjE2ZS05N2Y2LTQ0YjEtOGQ1MS00YjEzZjBlY2IxODIiLCJlbWFpbCI6Imd1YWx0ZXJAZ21haWwuY29tIiwiaWF0IjoxNzAwNDAwOTEzLCJleHAiOjE3MDA0MDQ1MTN9.ivP0_QqvCMuBWa8YDLHcwOZXInnWjV5uzd2Cc4ByLvQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Ponteiro Misterio3\",\r\n    \"descricao\": \"Aponta para o inferno\",\r\n    \"imagem\": \"base64 - Se vira Marcos\",\r\n    \"valor\": 10,\r\n    \"tenantId\": \"53d4f16e-97f6-44b1-8d51-4b13f0ecb182\",\r\n    \"categoriaId\": \"2950b743-f57e-4cb7-8e7a-90cbdd416c3d\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/item/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"item",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "ff703806-a5a7-4f2f-b805-d34d8c75595f"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Item",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1M2Q0ZjE2ZS05N2Y2LTQ0YjEtOGQ1MS00YjEzZjBlY2IxODIiLCJlbWFpbCI6Imd1YWx0ZXJAZ21haWwuY29tIiwiaWF0IjoxNzAwNDAwOTEzLCJleHAiOjE3MDA0MDQ1MTN9.ivP0_QqvCMuBWa8YDLHcwOZXInnWjV5uzd2Cc4ByLvQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/item/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"item",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "ff703806-a5a7-4f2f-b805-d34d8c75595f"
+								}
 							]
 						}
 					},
@@ -405,11 +785,14 @@
 				{
 					"name": "Criar Usuario",
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{   \r\n\r\n    \"nome\": \"Gualter\",\r\n    \"email\": \"gualter1@gmail.com\",\r\n    \"senha\": \"1234567891\"\r\n}",
+							"raw": "{   \r\n\r\n    \"nome\": \"Joas\",\r\n    \"email\": \"joas@gmail.com\",\r\n    \"senha\": \"1234567890\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -433,7 +816,17 @@
 				{
 					"name": "Editar Usuario",
 					"request": {
-						"method": "PATCH",
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwYjA4ZGZmMy0xNjcyLTQ1MGMtYThhZC02MDJmYjk1MjkxNzEiLCJlbWFpbCI6ImpvYXNAZ21haWwuY29tIiwiaWF0IjoxNjk5MTE3Njk0LCJleHAiOjE2OTkxMjEyOTR9.7KD4zxYV897MRFOSFbiLp53kWYGGvh5E5DQccWWVvAE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
@@ -467,12 +860,28 @@
 					"response": []
 				},
 				{
-					"name": "Busca Por Email",
+					"name": "Busca Por ID",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwYjA4ZGZmMy0xNjcyLTQ1MGMtYThhZC02MDJmYjk1MjkxNzEiLCJlbWFpbCI6ImpvYXNAZ21haWwuY29tIiwiaWF0IjoxNjk5MTE3Njk0LCJleHAiOjE2OTkxMjEyOTR9.7KD4zxYV897MRFOSFbiLp53kWYGGvh5E5DQccWWVvAE",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwYjA4ZGZmMy0xNjcyLTQ1MGMtYThhZC02MDJmYjk1MjkxNzEiLCJlbWFpbCI6ImpvYXNAZ21haWwuY29tIiwiaWF0IjoxNjk5MTEzOTY5LCJleHAiOjE2OTkxMTc1Njl9.LHu834784u7x50SijQDrSwA6xPGAW7IHxWYR9uUWVjk",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "http://localhost:3000/usuario/gualter1@gmail.com",
+							"raw": "http://localhost:3000/usuario/0b08dff3-1672-450c-a8ad-602fb9529171",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -480,14 +889,7 @@
 							"port": "3000",
 							"path": [
 								"usuario",
-								"gualter1@gmail.com"
-							],
-							"query": [
-								{
-									"key": "email",
-									"value": "gualter1@gmail.com",
-									"disabled": true
-								}
+								"0b08dff3-1672-450c-a8ad-602fb9529171"
 							]
 						}
 					},
@@ -496,8 +898,25 @@
 				{
 					"name": "Listar Usuarios",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwYjA4ZGZmMy0xNjcyLTQ1MGMtYThhZC02MDJmYjk1MjkxNzEiLCJlbWFpbCI6ImpvYXNAZ21haWwuY29tIiwiaWF0IjoxNjk5MTE3Njk0LCJleHAiOjE2OTkxMjEyOTR9.7KD4zxYV897MRFOSFbiLp53kWYGGvh5E5DQccWWVvAE",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwYjA4ZGZmMy0xNjcyLTQ1MGMtYThhZC02MDJmYjk1MjkxNzEiLCJlbWFpbCI6ImpvYXNAZ21haWwuY29tIiwiaWF0IjoxNjk5MTEzOTY5LCJleHAiOjE2OTkxMTc1Njl9.LHu834784u7x50SijQDrSwA6xPGAW7IHxWYR9uUWVjk",
+								"type": "text",
+								"disabled": true
+							}
+						],
 						"url": {
 							"raw": "http://localhost:3000/usuario",
 							"protocol": "http",
@@ -527,6 +946,251 @@
 							"path": [
 								"usuario",
 								"5c822f0d-073e-49e2-a8fe-422b43128a31"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login - Usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"email\": \"joas@gmail.com\",\r\n    \"senha\": \"1234567890\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/login/usuario",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"login",
+								"usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login - Tenant",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"gualter@gmail.com\",\r\n    \"senha\": \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/login/tenant",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"login",
+								"tenant"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tenant",
+			"item": [
+				{
+					"name": "Criar Tenant",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwYjA4ZGZmMy0xNjcyLTQ1MGMtYThhZC02MDJmYjk1MjkxNzEiLCJlbWFpbCI6ImpvYXNAZ21haWwuY29tIiwiaWF0IjoxNjk5MTE3Njk0LCJleHAiOjE2OTkxMjEyOTR9.7KD4zxYV897MRFOSFbiLp53kWYGGvh5E5DQccWWVvAE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Loja do Gualter\",\r\n    \"slug\":\"gualter\",\r\n    \"corPrincipal\": \"\",\r\n    \"email\":\"gualter@gmail.com\",\r\n    \"senha\":\"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/tenant",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tenant"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Tenants",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1M2Q0ZjE2ZS05N2Y2LTQ0YjEtOGQ1MS00YjEzZjBlY2IxODIiLCJlbWFpbCI6Imd1YWx0ZXJAZ21haWwuY29tIiwiaWF0IjoxNzAwNDAwOTEzLCJleHAiOjE3MDA0MDQ1MTN9.ivP0_QqvCMuBWa8YDLHcwOZXInnWjV5uzd2Cc4ByLvQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/tenant",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tenant"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Busca por Slug",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzODk4Y2U0NS1jNjZkLTRiZmUtOGQ4Yi1jNmY0MmNkMGIzZTYiLCJlbWFpbCI6Imd1YWx0ZXJAZ21haWwuY29tIiwiaWF0IjoxNzAwMzM1OTc2LCJleHAiOjE3MDAzMzk1NzZ9.8eEo-ZC7bsROtdCUzF-REZ9XQya7OHgXB54oh9ybV44",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/tenant/:slug",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tenant",
+								":slug"
+							],
+							"variable": [
+								{
+									"key": "slug",
+									"value": "gualter"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Status Tenant",
+			"item": [
+				{
+					"name": "Criar Status Tenant",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzODk4Y2U0NS1jNjZkLTRiZmUtOGQ4Yi1jNmY0MmNkMGIzZTYiLCJlbWFpbCI6Imd1YWx0ZXJAZ21haWwuY29tIiwiaWF0IjoxNzAwMzM4MDQ0LCJleHAiOjE3MDAzNDE2NDR9.RotKSMuHUpE4bjow0FKqsR8yeD-bhtw68QDmuNzipo4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descricao\": \"Aberto\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/status-tenant",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"status-tenant"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Status Tenant",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzODk4Y2U0NS1jNjZkLTRiZmUtOGQ4Yi1jNmY0MmNkMGIzZTYiLCJlbWFpbCI6Imd1YWx0ZXJAZ21haWwuY29tIiwiaWF0IjoxNzAwMzM4MDQ0LCJleHAiOjE3MDAzNDE2NDR9.RotKSMuHUpE4bjow0FKqsR8yeD-bhtw68QDmuNzipo4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/status-tenant",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"status-tenant"
 							]
 						}
 					},

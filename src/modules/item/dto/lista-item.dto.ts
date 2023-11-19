@@ -4,7 +4,7 @@ export class ListaItemDTO {
 		readonly descricao: string,
 		readonly imagem: string,
 		readonly valor: Number,
-		readonly tenant: string,
-		readonly categoria: string,
+		readonly tenantId: string,
+		readonly categoriaId: string,
 	) {}
 }
