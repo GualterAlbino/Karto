@@ -50,7 +50,13 @@ export class TenantService {
 			const tenantsExistentes = await this.tenantRepository.find();
 
 			const tenants = tenantsExistentes.map(
-				(tenant) => new ListaTenantDTO(tenant.slug, tenant.nome, tenant.corPrincipal),
+				(tenant) =>
+					new ListaTenantDTO(
+						tenant.id,
+						tenant.slug,
+						tenant.nome,
+						tenant.corPrincipal,
+					),
 			);
 
 			return tenants;

@@ -3,7 +3,7 @@ import {
 	Get,
 	Post,
 	Body,
-	Patch,
+	Put,
 	Param,
 	Delete,
 	HttpException,
@@ -16,16 +16,17 @@ import { ItemService } from './item.service';
 import { CriaItemDTO } from './dto/cria-item.dto';
 import { AtualizaItemDTO } from './dto/atualiza-item.dto';
 
+
 @UseGuards(AuthGuard)
-@ApiTags('Item - Não finalizado')
+@ApiTags('Item')
 @Controller('/item')
 export class ItemController {
 	constructor(private readonly itemService: ItemService) {}
 
 	@Post()
-	async criarItem(@Body() dadosEstado: CriaItemDTO) {
+	async criarItem(@Body() dadosItem: CriaItemDTO) {
 		try {
-			const itemCriado = await this.itemService.criarItem(dadosEstado);
+			const itemCriado = await this.itemService.criarItem(dadosItem);
 
 			return {
 				mensagem: 'Item criado com sucesso!',
@@ -59,8 +60,8 @@ export class ItemController {
 		}
 	}
 
-	@Patch('/:id')
-	async atualizarEstado(
+	@Put('/:id')
+	async atualizarItem(
 		@Param('id') id: string,
 		@Body() dadosItem: AtualizaItemDTO,
 	) {

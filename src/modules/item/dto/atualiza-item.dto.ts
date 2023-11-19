@@ -21,9 +21,9 @@ export class AtualizaItemDTO {
 
   @ApiProperty()
   @IsOptional()
-  tenant?: string;
+  tenantId: string;
 
   @ApiProperty()
   @IsOptional()
-  categoria: string;
+  categoriaId: string;
 }

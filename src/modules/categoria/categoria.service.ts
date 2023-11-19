@@ -51,7 +51,7 @@ export class CategoriaService {
 		}
 	}
 
-	async buscaCategoriaPorNome(descricao: string) {
+	async buscaCategoriaPorDescricao(descricao: string) {
 		try {
 			const checkNome = await this.categoriasRepository.findOne({
 				where: { descricao },

@@ -49,10 +49,10 @@ export class CategoriaController {
 	}
 
 	@Get('/:descricao')
-	async buscaCategoriaPorNome(@Param('descricao') descricao: string) {
+	async buscaCategoriaPorDescricao(@Param('descricao') descricao: string) {
 		try {
 			const categoriaProcurada =
-				await this.categoriasService.buscaCategoriaPorNome(descricao);
+				await this.categoriasService.buscaCategoriaPorDescricao(descricao);
 
 			if (!categoriaProcurada) {
 				return {

@@ -10,6 +10,9 @@ import { ItemEntity } from './entities/item.entity';
 import { CriaItemDTO } from './dto/cria-item.dto';
 import { ListaItemDTO } from './dto/lista-item.dto';
 import { AtualizaItemDTO } from './dto/atualiza-item.dto';
+import { TenantEntity } from '../tenant/entities/tenant.entity';
+import { CategoriaEntity } from '../categoria/entities/categoria.entity';
+import { UUID } from 'typeorm/driver/mongodb/bson.typings';
 
 @Injectable()
 export class ItemService {
@@ -36,8 +39,8 @@ export class ItemService {
 			itemEntity.descricao = dadositem.descricao;
 			itemEntity.imagem = dadositem.imagem;
 			itemEntity.valor = dadositem.valor;
-			itemEntity.tenant.id = dadositem.tenant;
-			itemEntity.categoria.id = dadositem.categoria;
+			itemEntity.tenant = { id: dadositem.tenantId } as TenantEntity;
+			itemEntity.categoria = { id: dadositem.categoriaId } as CategoriaEntity;
 
 			return this.itemRepository.save(itemEntity);
 		} catch (error) {
@@ -47,8 +50,11 @@ export class ItemService {
 
 	async buscarTodosItens() {
 		try {
-			const itensExistentes = await this.itemRepository.find();
+			const itensExistentes = await this.itemRepository.find({
+				relations: ['tenant', 'categoria'],
+			});
 
+			console.log(itensExistentes);
 			const itens = itensExistentes.map(
 				(item) =>
 					new ListaItemDTO(
@@ -56,8 +62,8 @@ export class ItemService {
 						item.descricao,
 						item.imagem,
 						item.valor,
-						item.tenant.slug,
-						item.categoria.descricao,
+						item.tenant.id,
+						item.categoria.id,
 					),
 			);
 
@@ -67,13 +73,13 @@ export class ItemService {
 		}
 	}
 
-	async buscaItensPorTenant(tenant: string) {
+	async buscaItensPorTenant(tenantId: string) {
 		try {
-			// const checkTenant = await this.itemRepository.findOne({
-			// 	where: { tenant },
-			// });
-			//return checkTenant;
-      return "Em breve..."
+			const checkTenant = await this.itemRepository.findOne({
+				relations: ['categoria'],
+				where: { tenant: { id: tenantId } },
+			});
+			return checkTenant;
 		} catch (error) {
 			throw new ConflictException(`${error.message}`);
 		}
@@ -81,16 +87,24 @@ export class ItemService {
 
 	async atualizarItem(id: string, itemEntity: AtualizaItemDTO) {
 		try {
-			// const itemAtualizado = await this.itemRepository.update(
-			// 	{ id },
-			// 	itemEntity,
-			// );
-			// if (itemAtualizado.affected === 0) {
-			// 	throw new NotFoundException(
-			// 		`O Item: " ${itemEntity.nome} " não foi encontrado! Nenhum registro foi afetado.`,
-			// 	);
-			// }
-      return "Em breve..."
+		
+			const itemAtualizado = await this.itemRepository.update(
+				{ id },
+				{
+					nome: itemEntity.nome,
+					descricao: itemEntity.descricao,
+					imagem: itemEntity.imagem,
+					valor: itemEntity.valor,
+					tenant: { id: itemEntity.tenantId },
+					categoria: { id: itemEntity.categoriaId },
+				},
+			);
+
+			if (itemAtualizado.affected === 0) {
+				throw new NotFoundException(
+					`O Item: "${itemEntity.nome}" não foi encontrado! Nenhum registro foi afetado.`,
+				);
+			}
 		} catch (error) {
 			throw new ConflictException(error.message);
 		}

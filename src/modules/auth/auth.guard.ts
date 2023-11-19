@@ -69,7 +69,7 @@ export class AuthGuard implements CanActivate {
 			return null;
 		}
 
-		console.log(token);
+		//console.log(token);
 		return token;
 	}
 }
